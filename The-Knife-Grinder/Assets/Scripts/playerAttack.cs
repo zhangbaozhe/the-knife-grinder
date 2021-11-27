@@ -5,18 +5,22 @@ using UnityEngine;
 
 public class playerAttack : MonoBehaviour
 {
+
     private Animator animator;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         attack();
-        
+
     }
     void Delay(int t)
     {
@@ -28,16 +32,25 @@ public class playerAttack : MonoBehaviour
     private void attack()
     {
 
-        
-        if (Input.GetMouseButtonDown(1) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+        if (transform.position.y >= -0.596f)
+            return;
+
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("attack");
-            //animator.SetBool("attack", true);
-            //Delay(int.MaxValue);
-            //animator.SetBool("attack", false);
-            animator.Play("punch");
+            if (rb.velocity.magnitude > 4 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+            {
+                animator.Play("flying_kick");
+            }
+
+            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+            { 
+                animator.Play("punch");
+            }
+
         }
-        
+
 
     }
+
+
 }
