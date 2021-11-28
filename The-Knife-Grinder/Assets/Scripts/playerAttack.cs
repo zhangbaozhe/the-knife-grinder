@@ -11,7 +11,14 @@ public class playerAttack : MonoBehaviour
 
     private float coolingTimer = 0.6f;
     private float currentTime = 0.0f;
+
+
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,7 +36,6 @@ public class playerAttack : MonoBehaviour
     {
         if (currentTime < coolingTimer)
         {
-            Debug.Log(currentTime);
             currentTime += Time.deltaTime;
         }
     }
@@ -48,14 +54,28 @@ public class playerAttack : MonoBehaviour
                 currentTime = -1.1f;
             }
 
-            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("punch") && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
             { 
-                animator.Play("punch");
-                currentTime = 0.0f;
+                if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
+                {
+                    animator.Play("stabbing");
+                    currentTime = 0.0f;
+                }
+                if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+                {
+                    animator.Play("punch");
+                    currentTime = 0.0f;
+                }
             }
 
         }
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "fist")
+        {  
+            animator.Play("get_hit");
+        }
+    }
 }
