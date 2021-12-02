@@ -1,27 +1,51 @@
 using UnityEngine;
+using Mirror;
+using Invector.vCharacterController;
 
-public class GrapplingGun : MonoBehaviour {
+public class GrapplingGun : NetworkBehaviour {
 
-    private LineRenderer lr;
+    public Transform gg;
     private Vector3 grapplePoint; 
     public LayerMask whatIsGrappleable; 
 
-    public Transform gunTip, camera, player;
+    public Transform gunTip,player;
     private float maxDistance = 100f;
     private SpringJoint joint;
+    private Transform camera;
+    private LineRenderer lr;
 
     void Awake() {
-        lr = GetComponent<LineRenderer>();
+        // TODO: Mirrir related bugs
+        // lr = GetComponent<LineRenderer>();
+        // FIXME: line bug
+        lr = gg.gameObject.GetComponent<LineRenderer>(); // TODO: the line is not working in Mirrio
         lr.positionCount = 0;
+        if (isLocalPlayer)
+        {
+            while (GetComponent<vThirdPersonInput>().tpCamera == null)
+            {
+                ;
+            }
+            camera = GetComponent<vThirdPersonInput>().tpCamera.transform;
+        }
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (isLocalPlayer)
+        {
             
-            StartGrapple();
-        }
-        else if (Input.GetMouseButtonUp(0)) {
-            StopGrapple();
+            camera = GetComponent<vThirdPersonInput>().tpCamera.transform;
+            Debug.Log(camera.ToString());
+
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                StartGrapple();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                StopGrapple();
+            }
         }
     }
 
@@ -32,8 +56,8 @@ public class GrapplingGun : MonoBehaviour {
 
     /// <summary>
     /// Call whenever we want to start a grapple
-    /// 1# 发射位置
-    /// 2# 勾人
+    /// 1# ????????
+    /// 2# ????
     /// 
     /// </summary>
     void StartGrapple() {
@@ -42,29 +66,29 @@ public class GrapplingGun : MonoBehaviour {
             Destroy(joint);
         }
         RaycastHit hit;
-        // 检测是否能碰撞上， 检测碰撞的起始点来自camera
+        // ?????????????????? ????????????????????camera
         if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable)) {
-            grapplePoint = hit.point; //撞击点
+            grapplePoint = hit.point; //??????
             
-            joint = player.gameObject.AddComponent<SpringJoint>(); //创建对应的springjoint
-            joint.autoConfigureConnectedAnchor = false; //禁止自动连接锚点位置
+            joint = player.gameObject.AddComponent<SpringJoint>(); //??????????springjoint
+            joint.autoConfigureConnectedAnchor = false; //????????????????????
             
-            joint.connectedAnchor = grapplePoint; //加一个连接点
+            joint.connectedAnchor = grapplePoint; //????????????
 
-            float distanceFromPoint = Vector3.Distance(player.position, grapplePoint); //计算两者之间的距离
+            float distanceFromPoint = Vector3.Distance(player.position, grapplePoint); //??????????????????
 
-            //The distance grapple will try to keep from grapple point. 这里需要大改
+            //The distance grapple will try to keep from grapple point. ????????????
             joint.maxDistance = distanceFromPoint * 0.5f; 
             joint.minDistance = distanceFromPoint * 0.3f;
 
             //Adjust these values to fit your game.
-            joint.spring = 8f; //弹簧强度,比较重要
-            joint.damper = 3f;  //弹簧作为活性状态下的压缩程度
-            joint.massScale = 3f; //解决彼此速度的问题，勾中玩家
+            joint.spring = 8f; //????????,????????
+            joint.damper = 3f;  //????????????????????????????
+            joint.massScale = 3f; //????????????????????????????
             
 
-            lr.positionCount = 2; //lr，中间的断点数目，可以用于生成抛物线等
-            currentGrapplePosition = gunTip.position; //记录当前gunTip的位置，方便后续的计算
+            lr.positionCount = 2; //lr??????????????????????????????????????
+            currentGrapplePosition = gunTip.position; //????????gunTip??????????????????????
         }
     }
 
@@ -85,7 +109,7 @@ public class GrapplingGun : MonoBehaviour {
 
         currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 8f);
         
-        //射出位置
+        //????????
         lr.SetPosition(0, gunTip.position);
 
         lr.SetPosition(1, currentGrapplePosition);
