@@ -26,7 +26,6 @@ namespace Invector.vCharacterController
         protected virtual void Start()
         {
             InitilizeController();
-            InitializeTpCamera();
         }
 
         protected virtual void FixedUpdate()
@@ -57,20 +56,7 @@ namespace Invector.vCharacterController
                 cc.Init();
         }
 
-        protected virtual void InitializeTpCamera()
-        {
-            if (tpCamera == null)
-            {
-                tpCamera = FindObjectOfType<vThirdPersonCamera>();
-                if (tpCamera == null)
-                    return;
-                if (tpCamera)
-                {
-                    tpCamera.SetMainTarget(this.transform);
-                    tpCamera.Init();
-                }
-            }
-        }
+        
 
         protected virtual void InputHandle()
         {
