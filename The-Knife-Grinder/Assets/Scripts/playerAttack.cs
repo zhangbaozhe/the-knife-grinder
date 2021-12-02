@@ -12,7 +12,8 @@ public class playerAttack : MonoBehaviour
     private float coolingTimer = 0.6f;
     private float currentTime = 0.0f;
 
-
+    public Transform detector;
+    public LayerMask lm;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -29,7 +30,8 @@ public class playerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attack();
+        if(Input.GetMouseButtonDown(1))
+            attack();
         Delay();
     }
     void Delay()
@@ -42,33 +44,35 @@ public class playerAttack : MonoBehaviour
     private void attack()
     {
 
-        if (transform.position.y >= -0.596f)
+        if (!Physics.Raycast(detector.position, Vector3.down, 0.2f, lm))
+        {
+            Debug.Log("return--inair");
             return;
+        }
         if (currentTime < coolingTimer)
             return;
-        if (Input.GetMouseButtonDown(1))
-        {
+        
             if (rb.velocity.magnitude > 4 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
             {
                 animator.Play("flying_kick");
                 currentTime = -1.1f;
             }
 
-            else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
-            { 
-                if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
-                {
-                    animator.Play("stabbing");
-                    currentTime = 0.0f;
-                }
-                if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
-                {
-                    animator.Play("punch");
-                    currentTime = 0.0f;
-                }
+        else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+        { 
+            if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
+            {
+                animator.Play("stabbing");
+                currentTime = 0.0f;
             }
-
+            if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+            {
+                animator.Play("punch");
+                currentTime = 0.0f;
+            }
         }
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)
