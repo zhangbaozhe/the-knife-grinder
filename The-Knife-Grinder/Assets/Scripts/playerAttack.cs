@@ -33,6 +33,7 @@ public class playerAttack : MonoBehaviour
         if(Input.GetMouseButtonDown(1))
             attack();
         Delay();
+        Debug.DrawLine(detector.position, new Vector3(detector.position.x, detector.position.y - 0.2f, detector.position.z), Color.red);
     }
     void Delay()
     {
@@ -43,22 +44,27 @@ public class playerAttack : MonoBehaviour
     }
     private void attack()
     {
-
-        if (!Physics.Raycast(detector.position, Vector3.down, 0.2f, lm))
+        RaycastHit[] hit;
+        hit = Physics.RaycastAll(detector.position, Vector3.down, 0.2f, lm);
+        //Debug.Log(hit.Length);
+        if (hit.Length != 1)
         {
             Debug.Log("return--inair");
+            
+            //Debug.DrawLine(detector.position, new Vector3(detector.position.x, detector.position.y - Physics.RaycastAll(detector.position, Vector3.down, 0.2f, lm).Length, detector.position.z), Color.red);
             return;
         }
         if (currentTime < coolingTimer)
             return;
         
-            if (rb.velocity.magnitude > 4 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
-            {
-                animator.Play("flying_kick");
-                currentTime = -1.1f;
-            }
+        if (rb.velocity.magnitude > 4 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+        {
+            animator.Play("flying_kick");
+            currentTime = -1.1f;
+            return;
+        }
 
-        else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
         { 
             if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
             {
