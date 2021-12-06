@@ -2,24 +2,28 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GrapplingGun.cs">
     <Files>
       <File FileName="Assets/Scripts/playerAttack.cs" Line="22" Column="5" />
-      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonController.cs" Line="5" Column="56" />
-      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonInput.cs" Line="59" Column="8" />
-      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/Camera/vThirdPersonCamera.cs" Line="81" Column="46" />
-      <File FileName="Assets/Scripts/MirrorInvectorBridge.cs" Line="5" Column="1" />
-      <File FileName="Assets/Scripts/GrapplingGun.cs" Line="20" Column="27" />
-      <File FileName="Assets/ExplosiveLLC/SuperCharacterController/SuperCharacterController/Core/SuperCharacterController.cs" Line="15" Column="1" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonController.cs" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonInput.cs" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/Camera/vThirdPersonCamera.cs" />
+      <File FileName="Assets/Scripts/MirrorInvectorBridge.cs" />
+      <File FileName="Assets/Scripts/GrapplingGun.cs" Line="20" Column="19" />
+      <File FileName="Assets/ExplosiveLLC/SuperCharacterController/SuperCharacterController/Core/SuperCharacterController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="The-Knife-Grinder" expanded="True" selected="True" />
+          <Node name="The-Knife-Grinder" expanded="True">
+            <Node name="Assets" expanded="True" selected="True">
+              <Node name="Scripts" expanded="True" />
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="bf5db464-2c8c-4a5f-ad12-120693efa4ea" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="82d9c04e-fbd8-458d-9cb4-44d2cb83eff0" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

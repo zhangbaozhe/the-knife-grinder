@@ -12,8 +12,9 @@ public class GrapplingGun : NetworkBehaviour {
     public Transform gunTip,player;
     private float maxDistance = 100f;
     private SpringJoint joint;
-    private Transform camera;
+    private Transform thirdCamera;
     private LineRenderer lr;
+    private Vector3 currentGrapplePosition;
 
     //public GameObject aim;
     //private Image aim_source;
@@ -29,7 +30,7 @@ public class GrapplingGun : NetworkBehaviour {
             {
                 ;
             }
-            camera = GetComponent<vThirdPersonInput>().tpCamera.transform;
+            thirdCamera = GetComponent<vThirdPersonInput>().tpCamera.transform;
         }
     }
     private void Start()
@@ -40,8 +41,6 @@ public class GrapplingGun : NetworkBehaviour {
         if (isLocalPlayer)
         {
             
-            camera = GetComponent<vThirdPersonInput>().tpCamera.transform;
-            Debug.Log(camera.ToString());
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -57,7 +56,10 @@ public class GrapplingGun : NetworkBehaviour {
 
     //Called after Update
     void LateUpdate() {
-        DrawRope();
+        if (isLocalPlayer)
+        {
+            DrawRope();
+        }
     }
 
     /// <summary>
@@ -67,13 +69,15 @@ public class GrapplingGun : NetworkBehaviour {
     /// 
     /// </summary>
     void StartGrapple() {
+
+        thirdCamera = GetComponent<vThirdPersonInput>().tpCamera.transform;
         if (joint)
         {
             Destroy(joint);
         }
         RaycastHit hit;
         // ?????????????????? ????????????????????camera
-        if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable)) {
+        if (Physics.Raycast(thirdCamera.position, thirdCamera.forward, out hit, maxDistance, whatIsGrappleable)) {
             //aim_source.color = new Color32(255, 255, 255, 255);
 
             grapplePoint = hit.point; //??????
@@ -84,13 +88,14 @@ public class GrapplingGun : NetworkBehaviour {
             joint.connectedAnchor = grapplePoint; //????????????
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint); //??????????????????
+            Debug.Log(distanceFromPoint);
 
             //The distance grapple will try to keep from grapple point. ????????????
             joint.maxDistance = distanceFromPoint * 0.5f; 
-            joint.minDistance = distanceFromPoint * 0.3f;
+            joint.minDistance = distanceFromPoint * 0.1f;
 
             //Adjust these values to fit your game.
-            joint.spring = 8f; //????????,????????
+            joint.spring = 2f; //????????,????????
             joint.damper = 3f;  //????????????????????????????
             joint.massScale = 3f; //????????????????????????????
             
@@ -110,7 +115,7 @@ public class GrapplingGun : NetworkBehaviour {
         Destroy(joint);
     }
 
-    private Vector3 currentGrapplePosition;
+
     
     void DrawRope() {
         //If not grappling, don't draw rope
