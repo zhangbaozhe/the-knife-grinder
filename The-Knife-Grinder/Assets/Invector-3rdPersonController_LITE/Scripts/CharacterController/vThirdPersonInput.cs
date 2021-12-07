@@ -31,7 +31,7 @@ namespace Invector.vCharacterController
 
         protected virtual void FixedUpdate()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer || PlayerHealth._instance.isdead) return;
             cc.UpdateMotor();               // updates the ThirdPersonMotor methods
             cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
             cc.ControlRotationType();       // handle the controller rotation type
@@ -39,6 +39,8 @@ namespace Invector.vCharacterController
 
         protected virtual void Update()
         {
+            if (PlayerHealth._instance.isdead)
+                return;
             InputHandle();                  // update the input methods
             cc.UpdateAnimator();            // updates the Animator Parameters
         }

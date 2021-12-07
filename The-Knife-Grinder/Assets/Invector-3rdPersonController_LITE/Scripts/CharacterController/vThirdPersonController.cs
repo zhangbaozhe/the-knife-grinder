@@ -6,7 +6,7 @@ namespace Invector.vCharacterController
     {
         public virtual void ControlAnimatorRootMotion()
         {
-            if (!this.enabled) return;
+            if (!this.enabled || PlayerHealth._instance.isdead) return;
 
             if (inputSmooth == Vector3.zero)
             {
@@ -20,7 +20,7 @@ namespace Invector.vCharacterController
 
         public virtual void ControlLocomotionType()
         {
-            if (lockMovement) return;
+            if (lockMovement || PlayerHealth._instance.isdead) return;
 
             if (locomotionType.Equals(LocomotionType.FreeWithStrafe) && !isStrafing || locomotionType.Equals(LocomotionType.OnlyFree))
             {
@@ -40,7 +40,7 @@ namespace Invector.vCharacterController
 
         public virtual void ControlRotationType()
         {
-            if (lockRotation) return;
+            if (lockRotation || PlayerHealth._instance.isdead) return;
 
             bool validInput = input != Vector3.zero || (isStrafing ? strafeSpeed.rotateWithCamera : freeSpeed.rotateWithCamera);
 
