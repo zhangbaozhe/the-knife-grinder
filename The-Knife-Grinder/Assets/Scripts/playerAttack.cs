@@ -52,7 +52,7 @@ public class playerAttack : MonoBehaviour
         if (currentTime < coolingTimer)
             return;
         
-            if (rb.velocity.magnitude > 4 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+            if (rb.velocity.magnitude >=6 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
             {
                 animator.Play("flying_kick");
                 currentTime = -1.1f;
