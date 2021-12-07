@@ -14,11 +14,38 @@ public class GrapplingGun : NetworkBehaviour {
     private float maxDistance = 100f;
     private SpringJoint joint;
     private Transform thirdCamera;
-    private LineRenderer lr;
     private Vector3 currentGrapplePosition;
+
+
+    private LineRenderer lr;
+
+
+    // Glow material
+    public GameObject childBody;
+    private Material playerMaterialClone;
+    [SyncVar(hook = nameof(OnColorChanged))]
+    public Color playerColor = Color.white;
+
+    void OnColorChanged(Color _Old, Color _New) {
+        Debug.Log("OnColorChanged");
+        childBody.GetComponent<SkinnedMeshRenderer>().materials[0].color = _New;
+        childBody.GetComponent<SkinnedMeshRenderer>().materials[1].color = _New;
+    }
+
+    [Command]
+    public void CmdSetupPlayer(Color _color)
+    {
+        playerColor = _color; 
+    }
+        
+
+    //public GameObject aim;
+    //private Image aim_source;
+
     private RaycastHit _hit;
     //private GameObject aim;
     private Image aim_source;
+
     void Awake() {
         // TODO: Mirrir related bugs
         // lr = GetComponent<LineRenderer>();
@@ -59,10 +86,8 @@ public class GrapplingGun : NetworkBehaviour {
 
     //Called after Update
     void LateUpdate() {
-        if (isLocalPlayer)
-        {
-            DrawRope();
-        }
+        if (!isLocalPlayer) { return; }
+        DrawRope();
     }
 
     /// <summary>
@@ -119,10 +144,13 @@ public class GrapplingGun : NetworkBehaviour {
     }
 
 
-    
     void DrawRope() {
         //If not grappling, don't draw rope
-        if (!joint) return;
+        if (!joint)
+        {
+            CmdSetupPlayer(Color.white);
+            return; 
+        }
 
         currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 8f);
         
@@ -130,6 +158,9 @@ public class GrapplingGun : NetworkBehaviour {
         lr.SetPosition(0, gunTip.position);
 
         lr.SetPosition(1, currentGrapplePosition);
+
+        // Glow if has rope 
+        CmdSetupPlayer(Color.yellow);
     }
 
     public bool IsGrappling() {
