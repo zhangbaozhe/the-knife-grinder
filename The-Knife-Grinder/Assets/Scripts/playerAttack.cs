@@ -64,25 +64,25 @@ public class playerAttack : NetworkBehaviour
         if (currentTime < coolingTimer)
             return;
         
-        if (rb.velocity.magnitude >=6 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+        if (rb.velocity.magnitude >=6 && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick 0") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
         {
             AudioManager._instance.Attack();
-            animator.Play("flying_kick");
+            animator.Play("flying_kick 0");
             currentTime = -1.1f;
         }
 
-        else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+        else if (!animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick 0"))
         { 
-            if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
+            if(gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing 0"))
             {
                 AudioManager._instance.Attack();
-                animator.Play("stabbing");
+                animator.Play("stabbing 0");
                 currentTime = 0.0f;
             }
-            if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+            if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch 0"))
             {
                 AudioManager._instance.Attack();
-                animator.Play("punch");
+                animator.Play("punch 0");
                 currentTime = 0.0f;
             }
         }

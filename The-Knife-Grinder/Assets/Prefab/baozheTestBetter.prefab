@@ -2216,6 +2216,7 @@ GameObject:
   - component: {fileID: -6866949529417388500}
   - component: {fileID: -5949481929544598034}
   - component: {fileID: -556716421789205357}
+  - component: {fileID: 7168934764176332850}
   m_Layer: 0
   m_Name: baozheTestBetter
   m_TagString: Player
@@ -2492,7 +2493,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842305343727698034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f237fdef45e2c964ea9c994347b8fbce, type: 3}
   m_Name: 
@@ -2900,6 +2901,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7168934764176332850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842305343727698034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9f1a01b826cc8449726f19bb685bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  dead: 0
 --- !u!1 &3570929896555770628
 GameObject:
   m_ObjectHideFlags: 0
