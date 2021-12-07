@@ -519,7 +519,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 3937883996724385408, guid: 70d7c0f4c8e574a69ba14c9bc81e48ba,
+  playerPrefab: {fileID: 1842305343727698034, guid: 4a81345f0ac1f4b27850af899eebddd2,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
@@ -651,10 +651,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3190610300920335608, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610301460080846, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610301841117628, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610302002644519, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610302017461460, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610302453149802, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190610302548162969, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5602518262006192528, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
         type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602518262006192528, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5602518262006192559, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
         type: 3}
@@ -711,6 +751,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5602518263994029524, guid: ef7a5510df71b3441ae4f4f6ba9f5565,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef7a5510df71b3441ae4f4f6ba9f5565, type: 3}
 --- !u!1 &2141024534
@@ -725,7 +770,7 @@ GameObject:
   - component: {fileID: 2141024538}
   - component: {fileID: 2141024537}
   - component: {fileID: 2141024536}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Big (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

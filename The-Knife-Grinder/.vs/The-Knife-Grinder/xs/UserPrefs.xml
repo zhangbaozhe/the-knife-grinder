@@ -1,20 +1,25 @@
 ﻿<Properties StartupConfiguration="{5B4E966E-2D4C-2CE9-13E5-40B77DBE16E0}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GrapplingGun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonController.cs">
     <Files>
       <File FileName="Assets/Scripts/playerAttack.cs" Line="22" Column="5" />
-      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonController.cs" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonController.cs" Line="5" Column="18" />
       <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonInput.cs" />
       <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/Camera/vThirdPersonCamera.cs" />
       <File FileName="Assets/Scripts/MirrorInvectorBridge.cs" />
-      <File FileName="Assets/Scripts/GrapplingGun.cs" Line="20" Column="19" />
+      <File FileName="Assets/Scripts/GrapplingGun.cs" />
       <File FileName="Assets/ExplosiveLLC/SuperCharacterController/SuperCharacterController/Core/SuperCharacterController.cs" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonMotor.cs" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/Scripts/CharacterController/vThirdPersonAnimator.cs" Line="6" Column="18" />
+      <File FileName="Assets/Invector-3rdPersonController_LITE/README_Basic.txt" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="The-Knife-Grinder" expanded="True">
-            <Node name="Assets" expanded="True" selected="True">
-              <Node name="Scripts" expanded="True" />
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="playerAttack.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -23,7 +28,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="82d9c04e-fbd8-458d-9cb4-44d2cb83eff0" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c283cddb-cc80-4fc1-9fb6-3c075e8e650f" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

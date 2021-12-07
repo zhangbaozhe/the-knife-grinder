@@ -395,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deb9ff5611cb9d4596d397ac57ee8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   horizontalInput: Horizontal
   verticallInput: Vertical
   jumpInput: 32
@@ -447,6 +449,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76f3fc4977fa3642a259db895f4257a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detector: {fileID: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1729333672573601111
 GameObject:
   m_ObjectHideFlags: 0

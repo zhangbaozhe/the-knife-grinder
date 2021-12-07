@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using Mirror;
 
 namespace Invector.vCharacterController
 {
-    public class vThirdPersonInput : MonoBehaviour
+    public class vThirdPersonInput : NetworkBehaviour
     {
         #region Variables       
 
@@ -30,6 +31,7 @@ namespace Invector.vCharacterController
 
         protected virtual void FixedUpdate()
         {
+            if (!isLocalPlayer) return;
             cc.UpdateMotor();               // updates the ThirdPersonMotor methods
             cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
             cc.ControlRotationType();       // handle the controller rotation type

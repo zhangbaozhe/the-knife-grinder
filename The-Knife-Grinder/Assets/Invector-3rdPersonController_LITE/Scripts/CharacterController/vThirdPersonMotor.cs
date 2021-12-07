@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using Mirror;
 
 namespace Invector.vCharacterController
 {
-    public class vThirdPersonMotor : MonoBehaviour
+    public class vThirdPersonMotor : NetworkBehaviour
     {
         #region Inspector Variables
 
