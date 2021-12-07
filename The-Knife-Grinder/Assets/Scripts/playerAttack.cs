@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class playerAttack : MonoBehaviour
+public class playerAttack : NetworkBehaviour
 {
 
     private Animator animator;
@@ -20,20 +21,24 @@ public class playerAttack : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    void Start()
+    public override void OnStartLocalPlayer()
     {
+        base.OnStartLocalPlayer();
+
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) { return; }
+
         if(Input.GetMouseButtonDown(1) && !PlayerHealth._instance.isdead)
             attack();
         Delay();
     }
+
     void Delay()
     {
         if (currentTime < coolingTimer)
@@ -41,6 +46,7 @@ public class playerAttack : MonoBehaviour
             currentTime += Time.deltaTime;
         }
     }
+
     private void attack()
     {
 
@@ -71,7 +77,6 @@ public class playerAttack : MonoBehaviour
                 currentTime = 0.0f;
             }
         }
-
         
     }
 
