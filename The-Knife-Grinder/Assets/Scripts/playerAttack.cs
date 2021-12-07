@@ -75,11 +75,4 @@ public class playerAttack : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "fist")
-        {  
-            animator.Play("get_hit");
-        }
-    }
 }
