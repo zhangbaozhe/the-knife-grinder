@@ -7,7 +7,8 @@ public class GrapplingGun : NetworkBehaviour {
 
     public Transform gg;
     private Vector3 grapplePoint; 
-    public LayerMask whatIsGrappleable; 
+    public LayerMask whatIsGrappleable;
+    
 
     public Transform gunTip,player;
     private float maxDistance = 100f;
@@ -15,9 +16,9 @@ public class GrapplingGun : NetworkBehaviour {
     private Transform thirdCamera;
     private LineRenderer lr;
     private Vector3 currentGrapplePosition;
-
-    //public GameObject aim;
-    //private Image aim_source;
+    private RaycastHit _hit;
+    //private GameObject aim;
+    private Image aim_source;
     void Awake() {
         // TODO: Mirrir related bugs
         // lr = GetComponent<LineRenderer>();
@@ -35,12 +36,14 @@ public class GrapplingGun : NetworkBehaviour {
     }
     private void Start()
     {
-        //aim_source = aim.GetComponent<Image>();
+
+        aim_source = FindObjectOfType<Image>();
     }
     void Update() {
         if (isLocalPlayer)
         {
             
+
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -78,7 +81,7 @@ public class GrapplingGun : NetworkBehaviour {
         RaycastHit hit;
         // ?????????????????? ????????????????????camera
         if (Physics.Raycast(thirdCamera.position, thirdCamera.forward, out hit, maxDistance, whatIsGrappleable)) {
-            //aim_source.color = new Color32(255, 255, 255, 255);
+            aim_source.color = new Color32(255, 255, 255, 255);
 
             grapplePoint = hit.point; //??????
             
@@ -110,7 +113,7 @@ public class GrapplingGun : NetworkBehaviour {
     /// Call whenever we want to stop a grapple
     /// </summary>
     void StopGrapple() {
-        //aim_source.color = new Color32(255, 255, 255, 160);
+        aim_source.color = new Color32(255, 255, 255, 160);
         lr.positionCount = 0;
         Destroy(joint);
     }
