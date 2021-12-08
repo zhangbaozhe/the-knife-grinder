@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using Mirror;
 
 namespace Invector.vCharacterController
 {
-    public class vThirdPersonInput : MonoBehaviour
+    public class vThirdPersonInput : NetworkBehaviour
     {
         #region Variables       
 
@@ -26,11 +27,12 @@ namespace Invector.vCharacterController
         protected virtual void Start()
         {
             InitilizeController();
-            InitializeTpCamera();
+            // InitializeTpCamera();
         }
 
         protected virtual void FixedUpdate()
         {
+            if (!isLocalPlayer) { return; }
             cc.UpdateMotor();               // updates the ThirdPersonMotor methods
             cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
             cc.ControlRotationType();       // handle the controller rotation type
@@ -57,20 +59,7 @@ namespace Invector.vCharacterController
                 cc.Init();
         }
 
-        protected virtual void InitializeTpCamera()
-        {
-            if (tpCamera == null)
-            {
-                tpCamera = FindObjectOfType<vThirdPersonCamera>();
-                if (tpCamera == null)
-                    return;
-                if (tpCamera)
-                {
-                    tpCamera.SetMainTarget(this.transform);
-                    tpCamera.Init();
-                }
-            }
-        }
+
 
         protected virtual void InputHandle()
         {
