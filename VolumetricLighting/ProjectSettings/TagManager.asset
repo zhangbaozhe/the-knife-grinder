@@ -7,6 +7,7 @@ TagManager:
   - fist
   - foot
   - darkness
+  - knife
   layers:
   - Default
   - TransparentFX

@@ -104,7 +104,7 @@ public class PlayerHealth : MonoBehaviour
         {
             animator.Play("get_hit");
             AudioManager._instance.Hit();
-            health = health - 22;
+            health = health - 32;
         }
         if (health <= 0)
         {
