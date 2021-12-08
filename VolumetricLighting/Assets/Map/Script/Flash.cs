@@ -9,7 +9,7 @@ public class Flash : MonoBehaviour
     public float interval = 1f;
     public float startTime = 225f;
     public float endTime = 195f;
-
+    public AudioSource alarm;
     private bool isFlash = false;
     private float _time; 
     float nextFlashTime = 225;
@@ -26,6 +26,8 @@ public class Flash : MonoBehaviour
         _time = timeManager.GetComponent<Counter>().times;
         if (_time >= endTime && _time <= startTime)
         {
+            if (!alarm.isPlaying)
+                alarm.Play();
             if (isFlash && _time < nextFlashTime)
             {
                 Light.GetComponent<TubeLight>().m_Color = Color.red;
