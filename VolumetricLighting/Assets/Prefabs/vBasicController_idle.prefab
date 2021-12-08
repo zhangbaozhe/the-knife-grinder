@@ -1263,8 +1263,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab45409b5a3563a45ab367ed34faff7a, type: 2}
-  - {fileID: 2100000, guid: ab45409b5a3563a45ab367ed34faff7a, type: 2}
+  - {fileID: 2100000, guid: cce73ad0104ef9e41b5d87d1f2ebb94c, type: 2}
+  - {fileID: 2100000, guid: 91f8da215dd1d994e8f338527f2e5fb9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3220,7 +3220,6 @@ GameObject:
   m_Component:
   - component: {fileID: 32620867204585315}
   - component: {fileID: 5261794604548404334}
-  - component: {fileID: 1426842722326941549}
   m_Layer: 0
   m_Name: fist
   m_TagString: fist
@@ -3255,18 +3254,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.09
   m_Center: {x: 0, y: 0.13, z: -0.03}
---- !u!114 &1426842722326941549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7177929381885996454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9227ab1747382447af28e29b31c10e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8339386127616031332
 GameObject:
   m_ObjectHideFlags: 0
