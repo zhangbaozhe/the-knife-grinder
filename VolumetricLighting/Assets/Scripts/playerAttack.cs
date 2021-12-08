@@ -53,12 +53,12 @@ public class playerAttack : NetworkBehaviour
 
     public bool inAir()
     {
-        if((Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0))
-        {
-            Debug.Log(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length);
-        }
-        return !(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
-        //return !Physics.Raycast(detector.position, Vector3.down, 0.11f, lm);
+        //if((Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0))
+        //{
+        //    Debug.Log(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm)[0].name);
+        //}
+        //return !(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
+        return !Physics.Raycast(detector.position, Vector3.down, 0.9f, lm);
     }
 
     private void attack()

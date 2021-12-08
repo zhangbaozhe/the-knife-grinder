@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log("stop --" + playerAttack._instance.inAir().ToString());
+            Debug.Log("stop --" + playerAttack._instance.inAir().ToString());
             move.volume = Mathf.Lerp(1, 0, 0.8f);
             move.Stop();
         }
