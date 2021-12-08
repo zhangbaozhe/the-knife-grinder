@@ -70,7 +70,7 @@ public class playerAttack : NetworkBehaviour
             "  rightFoot--" + Physics.Raycast(rightFoot.position, Vector3.down, 0.22f, lm).ToString());
         
         //return (Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
-        if(Physics.Raycast(detector.position, Vector3.down, 0.9f, lm) ||
+        if(Physics.Raycast(detector.position, Vector3.down, 0.834f, lm) ||
             Physics.Raycast(leftFoot.position, Vector3.down, 0.2f, lm) ||
             Physics.Raycast(rightFoot.position, Vector3.down, 0.2f, lm))
         {

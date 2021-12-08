@@ -2125,7 +2125,7 @@ MonoBehaviour:
   jumpHeight: 4
   airSpeed: 0
   airSmooth: 0
-  extraGravity: -10
+  extraGravity: -3.68
   limitFallVelocity: -15
   groundLayer:
     serializedVersion: 2
