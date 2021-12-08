@@ -24,8 +24,8 @@ public class CameraMove : MonoBehaviour {
     private void Start()
     {
         rotaVector3 = transform.localEulerAngles;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
