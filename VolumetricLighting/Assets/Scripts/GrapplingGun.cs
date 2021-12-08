@@ -5,10 +5,11 @@ using Invector.vCharacterController;
 
 public class GrapplingGun : NetworkBehaviour {
 
+    public static GrapplingGun _instance;
     public Transform gg;
     private Vector3 grapplePoint; 
     public LayerMask whatIsGrappleable;
-    
+    RaycastHit _hit;
 
     public Transform gunTip,player;
     private float maxDistance = 100f;
@@ -42,11 +43,12 @@ public class GrapplingGun : NetworkBehaviour {
     //public GameObject aim;
     //private Image aim_source;
 
-    private RaycastHit _hit;
+    
     //private GameObject aim;
     //private Image aim_source;
-
+    
     void Awake() {
+        _instance = this;
         // TODO: Mirrir related bugs
         // lr = GetComponent<LineRenderer>();
         // FIXME: line bug
@@ -63,14 +65,12 @@ public class GrapplingGun : NetworkBehaviour {
     }
     private void Start()
     {
-
         //aim_source = FindObjectOfType<Image>();
     }
     void Update() {
         if (isLocalPlayer)
         {
             
-
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -103,17 +103,19 @@ public class GrapplingGun : NetworkBehaviour {
         {
             Destroy(joint);
         }
-        RaycastHit hit;
+        //RaycastHit hit;
         // ?????????????????? ????????????????????camera
-        if (Physics.Raycast(thirdCamera.position, thirdCamera.forward, out hit, maxDistance, whatIsGrappleable)) {
-            //aim_source.color = new Color32(255, 255, 255, 255);
+        if (Physics.Raycast(thirdCamera.position, thirdCamera.forward, out _hit, maxDistance, whatIsGrappleable)) {
+            
             //AudioManager._instance.inAir();
-            grapplePoint = hit.point; //??????
+            grapplePoint = _hit.point; //??????
             
             joint = player.gameObject.AddComponent<SpringJoint>(); //??????????springjoint
             joint.autoConfigureConnectedAnchor = false; //????????????????????
             
             joint.connectedAnchor = grapplePoint; //????????????
+
+            AimManager._instance.Hook();
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint); //??????????????????
             //Debug.Log(distanceFromPoint);
@@ -138,7 +140,7 @@ public class GrapplingGun : NetworkBehaviour {
     /// Call whenever we want to stop a grapple
     /// </summary>
     void StopGrapple() {
-        //aim_source.color = new Color32(255, 255, 255, 160);
+        AimManager._instance.HasTarget();
         //AudioManager._instance.inAir();
         lr.positionCount = 0;
         Destroy(joint);
