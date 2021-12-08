@@ -18,6 +18,9 @@ public class playerAttack : NetworkBehaviour
 
     public Transform top;
     public Transform down;
+
+    public Transform leftFoot;
+    public Transform rightFoot;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -58,7 +61,15 @@ public class playerAttack : NetworkBehaviour
         //    Debug.Log(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm)[0].name);
         //}
         //return !(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
-        return !Physics.Raycast(detector.position, Vector3.down, 0.9f, lm);
+        if(Physics.Raycast(detector.position, Vector3.down, 0.9f, lm) &&
+            (Physics.Raycast(leftFoot.position, Vector3.down, 0.22f, lm) ||
+            Physics.Raycast(rightFoot.position, Vector3.down, 0.22f, lm)))
+        {
+            return false;
+        }
+        return true;
+
+        //return !Physics.Raycast(detector.position, Vector3.down, 0.9f, lm);
     }
 
     private void attack()
@@ -74,7 +85,7 @@ public class playerAttack : NetworkBehaviour
 
         if (rb.velocity.magnitude > 0 &&Input.GetKey(KeyCode.LeftShift) && !animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
         {
-            AudioManager._instance.Attack();
+            AudioManager._instance.Flying_kick();
             animator.Play("flying_kick");
             currentTime = -1.1f;
         }
@@ -83,14 +94,14 @@ public class playerAttack : NetworkBehaviour
         {
             if (gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
             {
-                AudioManager._instance.Attack();
+                AudioManager._instance.Punch();
                 animator.Play("stabbing");
                 currentTime = 0.0f;
             }
             if (!gameManager._instance.isFinalStage && !animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
             {
 
-                AudioManager._instance.Attack();
+                AudioManager._instance.Punch();
                 animator.Play("punch");
                 currentTime = 0.0f;
             }

@@ -107,7 +107,7 @@ public class GrapplingGun : NetworkBehaviour {
         // ?????????????????? ????????????????????camera
         if (Physics.Raycast(thirdCamera.position, thirdCamera.forward, out hit, maxDistance, whatIsGrappleable)) {
             //aim_source.color = new Color32(255, 255, 255, 255);
-
+            AudioManager._instance.inAir();
             grapplePoint = hit.point; //??????
             
             joint = player.gameObject.AddComponent<SpringJoint>(); //??????????springjoint
@@ -139,6 +139,7 @@ public class GrapplingGun : NetworkBehaviour {
     /// </summary>
     void StopGrapple() {
         //aim_source.color = new Color32(255, 255, 255, 160);
+        AudioManager._instance.inAir();
         lr.positionCount = 0;
         Destroy(joint);
     }

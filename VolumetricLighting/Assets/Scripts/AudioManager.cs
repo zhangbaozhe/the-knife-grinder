@@ -6,11 +6,15 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager  _instance;
     public AudioClip run;
+    public AudioClip punch;
+    public AudioClip flying_kick;
     public AudioSource getHit;
     public AudioSource move;
     public AudioSource attack_human;
     public AudioSource getHit_human;
-    private Rigidbody rb;
+    public AudioSource jump_human;
+    public AudioSource inair;
+    //private Rigidbody rb;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -18,7 +22,7 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         //audio = GetComponent<AudioSource>();
     }
 
@@ -27,9 +31,16 @@ public class AudioManager : MonoBehaviour
     {
      
         runAudio();
-        
+        jumpAudio();
     }
 
+    void jumpAudio()
+    {
+        if(Input.GetKey(KeyCode.Space) && !playerAttack._instance.inAir())
+        {
+            jump_human.Play();
+        }
+    }
     void runAudio()
     {
         float x, y;
@@ -66,9 +77,21 @@ public class AudioManager : MonoBehaviour
         getHit.Play();
         getHit_human.Play();
     }
-    public void Attack()
+    public void Punch()
     {
+        attack_human.clip = punch;
         attack_human.Play();
     }
-
+    public void Flying_kick()
+    {
+        attack_human.clip = flying_kick;
+        attack_human.Play();
+    }
+    public void inAir()
+    {
+        if (inair.isPlaying)
+            inair.Stop();
+        else
+            inair.Play();
+    }
 }
