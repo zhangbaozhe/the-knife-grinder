@@ -29,8 +29,8 @@ public class GrapplingGun : NetworkBehaviour {
 
     void OnColorChanged(Color _Old, Color _New) {
         //Debug.Log("OnColorChanged");
-        childBody.GetComponent<SkinnedMeshRenderer>().materials[0].color = _New;
-        childBody.GetComponent<SkinnedMeshRenderer>().materials[1].color = _New;
+        // childBody.GetComponent<SkinnedMeshRenderer>().materials[0].color = _New;
+        // childBody.GetComponent<SkinnedMeshRenderer>().materials[1].color = _New;
     }
 
     [Command]

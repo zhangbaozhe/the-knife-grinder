@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource getHit_human;
     public AudioSource jump_human;
     public AudioSource inair;
+    public AudioSource die;
+    private int deathcount = 0;
     //private Rigidbody rb;
     // Start is called before the first frame update
     private void Awake()
@@ -88,5 +90,17 @@ public class AudioManager : MonoBehaviour
         attack_human.clip = flying_kick;
         attack_human.Play();
     }
-
+    public void Die()
+    {
+        deathcount++;
+        if (deathcount > 1)
+            return;
+        Debug.Log(die.isPlaying);
+        if (!die.isPlaying)
+        {
+            die.Play();
+            Debug.Log(die.isPlaying);
+        }
+        
+    }
 }

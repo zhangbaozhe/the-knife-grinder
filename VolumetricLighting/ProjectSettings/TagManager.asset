@@ -6,6 +6,7 @@ TagManager:
   tags:
   - fist
   - foot
+  - darkness
   layers:
   - Default
   - TransparentFX
