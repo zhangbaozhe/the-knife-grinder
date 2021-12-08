@@ -2122,14 +2122,14 @@ MonoBehaviour:
   jumpWithRigidbodyForce: 0
   jumpAndRotate: 1
   jumpTimer: 0.3
-  jumpHeight: 4
-  airSpeed: 0
-  airSmooth: 0
+  jumpHeight: 8
+  airSpeed: 1
+  airSmooth: 1
   extraGravity: -10
   limitFallVelocity: -15
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   groundMinDistance: 0.25
   groundMaxDistance: 0.5
   slopeLimit: 75
@@ -2283,7 +2283,7 @@ MonoBehaviour:
   gg: {fileID: 9107911379848537919}
   whatIsGrappleable:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   gunTip: {fileID: 9107911379848537919}
   player: {fileID: 1087859482140734212}
   childBody: {fileID: 1087859481333649364}
@@ -3220,7 +3220,6 @@ GameObject:
   m_Component:
   - component: {fileID: 32620867204585315}
   - component: {fileID: 5261794604548404334}
-  - component: {fileID: 1426842722326941549}
   m_Layer: 0
   m_Name: fist
   m_TagString: fist
@@ -3255,18 +3254,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.09
   m_Center: {x: 0, y: 0.13, z: -0.03}
---- !u!114 &1426842722326941549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7177929381885996454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9227ab1747382447af28e29b31c10e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8339386127616031332
 GameObject:
   m_ObjectHideFlags: 0
