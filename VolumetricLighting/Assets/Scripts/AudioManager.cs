@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
         {
             jump_human.Play();
         }
+        
     }
     void runAudio()
     {
@@ -67,7 +68,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("stop --" + playerAttack._instance.inAir().ToString());
+            //Debug.Log("stop --" + playerAttack._instance.inAir().ToString());
             move.volume = Mathf.Lerp(1, 0, 0.8f);
             move.Stop();
         }
@@ -87,11 +88,5 @@ public class AudioManager : MonoBehaviour
         attack_human.clip = flying_kick;
         attack_human.Play();
     }
-    public void inAir()
-    {
-        if (inair.isPlaying)
-            inair.Stop();
-        else
-            inair.Play();
-    }
+
 }

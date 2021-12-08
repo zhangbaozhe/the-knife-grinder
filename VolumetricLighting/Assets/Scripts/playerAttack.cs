@@ -40,12 +40,21 @@ public class playerAttack : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) { return; }
-
+        
         if (Input.GetMouseButtonDown(1) && !PlayerHealth._instance.isdead)
             attack();
         Delay();
     }
-
+    private void FixedUpdate()
+    {
+        if (rb.velocity.magnitude >= 5 && inAir())
+        {
+            if(!AudioManager._instance.inair.isPlaying)
+                AudioManager._instance.inair.Play();
+        }
+        else
+            AudioManager._instance.inair.Stop();
+    }
     void Delay()
     {
         if (currentTime < coolingTimer)
@@ -56,14 +65,14 @@ public class playerAttack : NetworkBehaviour
 
     public bool inAir()
     {
-        //if((Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0))
-        //{
-        //    Debug.Log(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm)[0].name);
-        //}
-        //return !(Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
-        if(Physics.Raycast(detector.position, Vector3.down, 0.9f, lm) &&
-            (Physics.Raycast(leftFoot.position, Vector3.down, 0.22f, lm) ||
-            Physics.Raycast(rightFoot.position, Vector3.down, 0.22f, lm)))
+        Debug.Log("detector--" + Physics.Raycast(detector.position, Vector3.down, 0.9f, lm).ToString()
+            + "  leftFoot--" + Physics.Raycast(leftFoot.position, Vector3.down, 0.22f, lm).ToString() +
+            "  rightFoot--" + Physics.Raycast(rightFoot.position, Vector3.down, 0.22f, lm).ToString());
+        
+        //return (Physics.OverlapCapsule(down.position, top.position, 0.13f, lm).Length != 0);
+        if(Physics.Raycast(detector.position, Vector3.down, 0.9f, lm) ||
+            Physics.Raycast(leftFoot.position, Vector3.down, 0.2f, lm) ||
+            Physics.Raycast(rightFoot.position, Vector3.down, 0.2f, lm))
         {
             return false;
         }

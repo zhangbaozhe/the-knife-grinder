@@ -2308,8 +2308,8 @@ MonoBehaviour:
     m_Bits: 256
   top: {fileID: 3801152800806239336}
   down: {fileID: 5503285115866785258}
-  leftFoot: {fileID: 1087859480810091706}
-  rightFoot: {fileID: 1087859480667194843}
+  leftFoot: {fileID: 1087859482359699492}
+  rightFoot: {fileID: 1087859482012020416}
 --- !u!114 &4198114312812820444
 MonoBehaviour:
   m_ObjectHideFlags: 0
