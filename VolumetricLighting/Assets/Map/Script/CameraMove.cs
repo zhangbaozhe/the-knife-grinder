@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour {
 
+    
     public Transform playerCam;
     public static CameraMove Instance = null;
 
@@ -17,9 +18,9 @@ public class CameraMove : MonoBehaviour {
     private float sensitivity = 50f;
     private float sensMultiplier = 1f;
     void Awake()
-{
+    {
     Instance = this;
-}
+    }
 
     private void Start()
     {
@@ -87,6 +88,11 @@ public class CameraMove : MonoBehaviour {
         //Perform the rotations
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
         //playerCam.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
+    }
+
+    public void Active()
+    {
+        gameObject.SetActive(true);
     }
 }
 

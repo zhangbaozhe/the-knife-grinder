@@ -13,6 +13,7 @@ public class PlayerHealth : NetworkBehaviour
     public GameObject myWeapon;
     public GameObject myFist;
 
+    public GameObject itself;
     private void Awake()
     {
         _instance = this;
@@ -40,6 +41,10 @@ public class PlayerHealth : NetworkBehaviour
         isdead = true;
         AudioManager._instance.Die();
         InGameUI._instance.ShowDeathInfo();
+
+        gameObject.SetActive(false);
+        PlayerCameraManager._instance.Disactive();
+        CameraMove.Instance.Active();
     } 
 
     private void OnCollisionEnter(Collision collision)
