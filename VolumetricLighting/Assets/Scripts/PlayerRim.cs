@@ -13,21 +13,21 @@ public class PlayerRim: NetworkBehaviour
 
     // sync color
     [SyncVar(hook = nameof(OnRimColorChanged))]
-    public Color32 rimColor = new Color32(48, 105, 150, 255);
+    public Color rimColor;
 
-    void OnRimColorChanged(Color32 _old, Color32 _new)
+    void OnRimColorChanged(Color _old, Color _new)
     {
         Material myMat = new Material(source);
         myMat.SetColor("_AtmoColor", _new);
         Material[] Mat = new Material[2] { myMat, myMat };
         childBody.GetComponent<Renderer>().materials = Mat;
-        // childBody.GetComponent<Renderer>().materials[0].color = _new;
-        // childBody.GetComponent<Renderer>().materials[1].color = _new;
+        // childBody.GetComponent<Renderer>().materials[0].SetColor("EmissionColor", _new);
+        // childBody.GetComponent<Renderer>().materials[1].SetColor("EmissionColor", _new);
 
     }
 
     [Command]
-    public void CmdSetRimColor(Color32 _color)
+    public void CmdSetRimColor(Color _color)
     {
         rimColor = _color;
     }
@@ -45,17 +45,28 @@ public class PlayerRim: NetworkBehaviour
         if(Counter._instance.times >= 180f && !colorChanged)
         {
             // myMat = new Material(source);
-            Debug.Log(GetRegion._instance.region_num);
+            // Debug.Log(GetRegion._instance.region_num);
             if (GetRegion._instance.region_num == 1)
-                CmdSetRimColor(new Color32(26, 115, 22, 255));
-            else if (GetRegion._instance.region_num == 2)
-                CmdSetRimColor(new Color32(48, 105, 150, 255));
-            else if (GetRegion._instance.region_num == 4)
-                CmdSetRimColor(new Color32(153, 154, 74, 255));
-            else if (GetRegion._instance.region_num == 3)
-                CmdSetRimColor(new Color32(48, 105, 150, 255));
-            else if (GetRegion._instance.region_num == 5)
-                CmdSetRimColor(new Color32(255, 255, 255, 255));
+            {
+                CmdSetRimColor(Color.green);
+            }
+            if (GetRegion._instance.region_num == 2)
+            {
+                CmdSetRimColor(Color.blue);
+                // Debug.Log("ENTERING 2");
+            }
+            if (GetRegion._instance.region_num == 4)
+            {
+                CmdSetRimColor(Color.yellow);
+            }
+            if (GetRegion._instance.region_num == 3)
+            {
+                CmdSetRimColor(Color.red);
+            }
+            if (GetRegion._instance.region_num == 5)
+            {
+                CmdSetRimColor(Color.white);
+            }
             //Debug.Log(myMat.shader.FindPropertyIndex("_AtmoColor"));
 
             // Material[] Mat = new Material[2] { myMat, myMat };
