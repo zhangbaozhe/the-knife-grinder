@@ -17,6 +17,7 @@ public class GrapplingGun : NetworkBehaviour {
     private Transform thirdCamera;
     private Vector3 currentGrapplePosition;
 
+    private bool isHide = false;
 
     private LineRenderer lr;
 
@@ -82,8 +83,13 @@ public class GrapplingGun : NetworkBehaviour {
                 StopGrapple();
             }
 
-            if(Counter._instance.times <= 215)
+            if(Counter._instance.times <= 50)
             {
+                if (!isHide)
+                {
+                    AimManager._instance.hide();
+                    isHide = true;
+                }
                 StopGrapple();
             }
         }

@@ -41,4 +41,9 @@ public class AimManager : MonoBehaviour
         aim.sprite = hooked;
         aim.color = new Color32(255, 255, 255, 255);
     }
+
+    public void hide()
+    {
+        gameObject.SetActive(false);
+    }
 }
