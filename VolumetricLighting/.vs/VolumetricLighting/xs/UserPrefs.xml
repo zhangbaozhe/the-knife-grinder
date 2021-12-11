@@ -1,10 +1,27 @@
 ﻿<Properties StartupConfiguration="{670A7829-678A-68CF-0E87-00F667260625}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Map/Script/Flash.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/playerAttack.cs">
     <Files>
-      <File FileName="Assets/Map/Script/Counter.cs" Line="10" Column="46" />
+      <File FileName="Assets/Map/Script/Counter.cs" Line="10" Column="47" />
       <File FileName="Assets/Mirror/Runtime/NetworkTime.cs" Line="7" Column="25" />
-      <File FileName="Assets/Map/Script/Flash.cs" Line="26" Column="1" />
+      <File FileName="Assets/Map/Script/Flash.cs" Line="26" Column="25" />
+      <File FileName="Assets/Scripts/UIManager.cs" Line="41" Column="6" />
+      <File FileName="Assets/Scripts/playerAttack.cs" Line="50" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="VolumetricLighting" expanded="True" selected="True" />
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
