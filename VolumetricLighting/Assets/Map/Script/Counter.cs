@@ -30,7 +30,7 @@ public class Counter : NetworkBehaviour
 		times = 225 - NetworkTime.time;
 		s = (int)times % 225; //小数转整数 
 		TimeText.text = s.ToString();
-		Debug.Log(times);
+		//Debug.Log(times);
 
 		// Baozhe: first level shaking and falling
 		if (s >= 155 && s < 165)

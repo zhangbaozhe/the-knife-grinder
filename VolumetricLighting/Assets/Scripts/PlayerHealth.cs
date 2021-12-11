@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : NetworkBehaviour
 {
     public static PlayerHealth _instance;
     private Animator animator;
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isLocalPlayer) { return; }
         if (health <= 0)
         {
             dead();
