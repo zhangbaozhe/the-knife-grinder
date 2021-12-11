@@ -95,11 +95,11 @@ public class AudioManager : MonoBehaviour
         deathcount++;
         if (deathcount > 1)
             return;
-        Debug.Log(die.isPlaying);
+        //Debug.Log(die.isPlaying);
         if (!die.isPlaying)
         {
             die.Play();
-            Debug.Log(die.isPlaying);
+            //Debug.Log(die.isPlaying);
         }
         
     }

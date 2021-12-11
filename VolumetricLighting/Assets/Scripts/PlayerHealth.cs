@@ -76,12 +76,12 @@ public class PlayerHealth : NetworkBehaviour
             if (playerAttack._instance.inAir())
             {
                 Debug.Log("inair --hit");
-                rb.AddExplosionForce(50.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(500.0f, other.transform.position, 1.0f);
             }
             else
             {
                 Debug.Log("grounded --hit");
-                rb.AddExplosionForce(150.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(1500.0f, other.transform.position, 1.0f);
             }
             //Vector3 delta = (transform.position - collision.collider.transform.position).normalized;
             //Vector3 force = new Vector3(delta.x * 1000, delta.y * 500, delta.z * 1000);
@@ -102,9 +102,9 @@ public class PlayerHealth : NetworkBehaviour
         else if (other.tag == "foot")
         {
             if (playerAttack._instance.inAir())
-                rb.AddExplosionForce(70.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(700.0f, other.transform.position, 1.0f);
             else
-                rb.AddExplosionForce(200.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(2000.0f, other.transform.position, 1.0f);
 
             animator.Play("get_hit");
             AudioManager._instance.Hit();
