@@ -16,7 +16,7 @@ public class Transform_player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Counter._instance.times <= 215 && !hasTransformed)
+        if (Counter._instance.times <= 50 && !hasTransformed)
         {
             player_rb.velocity = new Vector3(0f, 0f, 0f);
             player.position = new Vector3(0f, 130f, 330f);

@@ -15,7 +15,7 @@ public class CameraPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Counter._instance.times <= 215 && !hasTransformed)
+        if (Counter._instance.times <= 50 && !hasTransformed)
         {
             camera_position.position = new Vector3(0f, 129f, 303f);
             hasTransformed = true;
