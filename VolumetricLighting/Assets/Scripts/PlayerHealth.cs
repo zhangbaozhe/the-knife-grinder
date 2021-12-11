@@ -10,7 +10,7 @@ public class PlayerHealth : NetworkBehaviour
     public int health = 100;
 
     [SyncVar]
-    public uint playerID; 
+    public uint playerID;
 
     [SyncVar]
     public bool isdead = false;
@@ -53,7 +53,7 @@ public class PlayerHealth : NetworkBehaviour
         isSetWeapon = _isSetWeapon;
         RpcSetWeaponActive(_isSetWeapon, targetID);
     }
-    
+
     [ClientRpc]
     public void RpcSetFistActive(bool _isSetFist, uint targetID)
     {
@@ -117,7 +117,7 @@ public class PlayerHealth : NetworkBehaviour
 
     [ClientRpc]
     public void RpcCheckIsWin(GameObject player)
-    { 
+    {
         if (player.GetComponent<PlayerHealth>().isdead)
         {
             isWin = false;
@@ -186,7 +186,7 @@ public class PlayerHealth : NetworkBehaviour
             CmdSetFootActive(false, playerID);
             CmdSetWeaponActive(false, playerID);
         }
-           
+
     }
     void FixedUpdate()
     {
@@ -195,7 +195,7 @@ public class PlayerHealth : NetworkBehaviour
         {
             dead();
         }
-        
+
         // wait for all players come in
         // TODO: write some fucntions to detect all palyers comming in
         if (Counter._instance.times <= 225 - 45.0f)
@@ -210,7 +210,7 @@ public class PlayerHealth : NetworkBehaviour
     }
     private void dead()
     {
-        if (!isLocalPlayer) { return;  }
+        if (!isLocalPlayer) { return; }
         animator.Play("dead");
         // isdead = true;
         CmdSetupDeath(true);
@@ -220,17 +220,17 @@ public class PlayerHealth : NetworkBehaviour
         gameObject.SetActive(false);
         PlayerCameraManager._instance.Disactive();
         gameManager._instance.ActiveDeadCam();
-    } 
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag != "Ground")
             //Debug.Log(collision.collider.tag);
-        if(collision.collider.tag == "darkness")
+            if (collision.collider.tag == "darkness")
             {
                 health = health - 100;
             }
-        
+
 
 
     }
@@ -247,8 +247,8 @@ public class PlayerHealth : NetworkBehaviour
                 return;
             }*/
 
-        
-        
+
+
             if (other.tag == "fist")
             {
                 //myFist.GetComponent<SphereCollider>().enabled = false;
@@ -297,18 +297,18 @@ public class PlayerHealth : NetworkBehaviour
                 AudioManager._instance.Hit();
                 health = health - 32;
             }
-        
+
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "fist")
+        if (other.tag == "fist")
         {
             Debug.Log("Trigger Exit--fist re-active");
             //myFist.GetComponent<SphereCollider>().enabled = true;
         }
-        else if(other.tag == "knife")
+        else if (other.tag == "knife")
         {
             Debug.Log("Trigger Exit--knife re-active");
             //myWeapon.GetComponent<BoxCollider>().enabled = true;
