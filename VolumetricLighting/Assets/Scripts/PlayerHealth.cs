@@ -8,10 +8,59 @@ public class PlayerHealth : NetworkBehaviour
     public static PlayerHealth _instance;
     private Animator animator;
     public int health = 100;
+
+    [SyncVar]
     public bool isdead = false;
+
+    [SyncVar]
+    public bool isWin = false;
+
     private Rigidbody rb;
     public GameObject myWeapon;
     public GameObject myFist;
+
+    // death related
+    [Command]
+    public void CmdSetupDeath(bool _dead)
+    {
+        isdead = _dead;
+    }
+
+    [Command]
+    public void CmdIsWin()
+    {
+        RpcCheckIsWin(this.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcCheckIsWin(GameObject player)
+    { 
+        if (player.GetComponent<PlayerHealth>().isdead)
+        {
+            isWin = false;
+            return;
+        }
+        else
+        {
+            GameObject[] tempGameObjects = GameObject.FindGameObjectsWithTag("Player");
+            for (int i = 0; i < tempGameObjects.Length; i++)
+            {
+                // Debug.Log(tempGameObjects[i].name);
+                if (tempGameObjects[i] == player)
+                {
+                    continue;
+                }
+                if (!tempGameObjects[i].GetComponent<PlayerHealth>().isdead)
+                {
+                    isWin = false;
+                    return;
+                }
+            }
+            isWin = true;
+        }
+    }
+
+
 
     private void Awake()
     {
@@ -32,12 +81,24 @@ public class PlayerHealth : NetworkBehaviour
         {
             dead();
         }
+
+        // wait for all players come in
+        // TODO: write some fucntions to detect all palyers comming in
+        if (Counter._instance.times <= 225 - 40.0f)
+        {
+            CmdIsWin();
+            if (isWin)
+            {
+                Debug.Log("WINWINWIN");
+            }
+        }
     }
     private void dead()
     {
         if (!isLocalPlayer) { return;  }
         animator.Play("dead");
-        isdead = true;
+        // isdead = true;
+        CmdSetupDeath(true);
         AudioManager._instance.Die();
         InGameUI._instance.ShowDeathInfo();
     } 
