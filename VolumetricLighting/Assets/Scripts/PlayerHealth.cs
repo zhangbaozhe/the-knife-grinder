@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public int health = 100;
     public bool isdead = false;
     private Rigidbody rb;
+    public GameObject myWeapon;
+    public GameObject myFist;
+
     private void Awake()
     {
         _instance = this;
@@ -63,15 +66,17 @@ public class PlayerHealth : MonoBehaviour
             }
         if (other.tag == "fist")
         {
+            myFist.GetComponent<SphereCollider>().enabled = false;
+
             if (playerAttack._instance.inAir())
             {
                 Debug.Log("inair --hit");
-                rb.AddExplosionForce(150.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(50.0f, other.transform.position, 1.0f);
             }
             else
             {
                 Debug.Log("grounded --hit");
-                rb.AddExplosionForce(300.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(150.0f, other.transform.position, 1.0f);
             }
             //Vector3 delta = (transform.position - collision.collider.transform.position).normalized;
             //Vector3 force = new Vector3(delta.x * 1000, delta.y * 500, delta.z * 1000);
@@ -92,9 +97,9 @@ public class PlayerHealth : MonoBehaviour
         else if (other.tag == "foot")
         {
             if (playerAttack._instance.inAir())
-                rb.AddExplosionForce(1.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(70.0f, other.transform.position, 1.0f);
             else
-                rb.AddExplosionForce(3.0f, other.transform.position, 1.0f);
+                rb.AddExplosionForce(200.0f, other.transform.position, 1.0f);
 
             animator.Play("get_hit");
             AudioManager._instance.Hit();
@@ -102,6 +107,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (other.tag == "knife")
         {
+            myWeapon.GetComponent<BoxCollider>().enabled = false;
             animator.Play("get_hit");
             AudioManager._instance.Hit();
             health = health - 32;
@@ -109,6 +115,20 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             dead();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "fist")
+        {
+            Debug.Log("Trigger Exit--fist re-active");
+            myFist.GetComponent<SphereCollider>().enabled = true;
+        }
+        else if(other.tag == "knife")
+        {
+            Debug.Log("Trigger Exit--knife re-active");
+            myWeapon.GetComponent<BoxCollider>().enabled = true;
         }
     }
 }
