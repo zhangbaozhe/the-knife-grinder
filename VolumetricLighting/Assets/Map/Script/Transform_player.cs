@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraPosition : MonoBehaviour
+public class Transform_player : MonoBehaviour
 {
-    public Transform camera_position;
+    public Transform player;
     private bool hasTransformed = false;
 
     void Start()
@@ -17,9 +17,8 @@ public class CameraPosition : MonoBehaviour
     {
         if (Counter._instance.times <= 215 && !hasTransformed)
         {
-            camera_position.position = new Vector3(0f, 129f, 303f);
+            player.position = new Vector3(0f, 130f, 330f);
             hasTransformed = true;
-            camera_position.rotation = Quaternion.Euler(Vector3.left * 11);
         }
     }
 }
