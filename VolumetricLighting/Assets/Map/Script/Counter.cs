@@ -33,9 +33,9 @@ public class Counter : NetworkBehaviour
 		//Debug.Log(times);
 
 		// Baozhe: first level shaking and falling
-		if (s >= 155 && s < 165)
+		if (s >= 170 && s < 180)
         {
-			if (s == 155)
+			if (s == 170)
             {
 				for (int i = 0; i < 5; i++)
                 {
@@ -53,9 +53,9 @@ public class Counter : NetworkBehaviour
         }
 
 		// Baozhe: second level shaking and falling
-		if (s >= 95 && s < 105)
+		if (s >= 110 && s < 120)
         {
-			if (s == 95)
+			if (s == 110)
             {
 				for (int i = 0; i < 16; i++)
                 {

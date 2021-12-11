@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour {
 
+    
     public Transform playerCam;
     public static CameraMove Instance = null;
 
     private Vector3 dirVector3;
     private Vector3 rotaVector3;
     private float paramater = 0.1f;
-
-
+    public AudioSource bgm;
+    public AudioClip battleTheme;
     //Rotation and look
     private float xRotation;
     private float sensitivity = 50f;
     private float sensMultiplier = 1f;
+
+    private bool startFinalStage = false;
+    private bool BGMSwitched = false;
     void Awake()
-{
-    Instance = this;
-}
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -29,6 +33,24 @@ public class CameraMove : MonoBehaviour {
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        if(Counter._instance.times <=60.0f)
+        {
+            if (!startFinalStage)
+            {
+                LowVolume();
+            }
+        }
+
+        if(Counter._instance.times <= 55.0f)
+        {
+            if (!BGMSwitched)
+            {
+                SwitchBGM();
+            }
+        }
+    }
     void FixedUpdate()
     {
             Look();
@@ -87,6 +109,23 @@ public class CameraMove : MonoBehaviour {
         //Perform the rotations
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
         //playerCam.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
+    }
+
+    public void Active()
+    {
+        gameObject.SetActive(true);
+    }
+
+    private void LowVolume()
+    {
+        bgm.volume = Mathf.Lerp(bgm.volume, 0f, 0.5f);
+        startFinalStage = true;
+    }
+    private void SwitchBGM()
+    {
+        bgm.clip = battleTheme;
+        bgm.volume = Mathf.Lerp(bgm.volume, 1f, 0.5f);
+        BGMSwitched = true;
     }
 }
 

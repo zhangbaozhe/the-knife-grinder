@@ -2040,6 +2040,7 @@ GameObject:
   - component: {fileID: 5408927362221965440}
   - component: {fileID: 8549184389898118695}
   - component: {fileID: 6378935591760526018}
+  - component: {fileID: 3140101887647608144}
   m_Layer: 0
   m_Name: vBasicController_idle
   m_TagString: Player
@@ -2325,6 +2326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69479e8feb4a1a4b913b0e0253736e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   health: 100
   isdead: 0
   myWeapon: {fileID: 3647375813394276842}
@@ -3083,6 +3086,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3140101887647608144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087859482140734270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27694c112f5a61440a19f05bdd599477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_rb: {fileID: 1087859482140734208}
+  player: {fileID: 1087859482140734212}
 --- !u!1 &1087859482239540528
 GameObject:
   m_ObjectHideFlags: 0
