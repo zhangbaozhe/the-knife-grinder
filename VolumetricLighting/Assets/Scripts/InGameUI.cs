@@ -8,6 +8,7 @@ public class InGameUI : MonoBehaviour
     public static InGameUI _instance;
     public GameObject InGamePanel;
     public GameObject DeathInfo;
+    public GameObject aim;
 
     private void Awake()
     {
@@ -27,6 +28,10 @@ public class InGameUI : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         InGamePanel.SetActive(!InGamePanel.activeSelf);
+        if (DeathInfo.activeSelf)
+        {
+            DeathInfo.SetActive(false);
+        }
     }
     public void onQuitClick()
     {
@@ -42,6 +47,7 @@ public class InGameUI : MonoBehaviour
     {
         if(DeathInfo.activeSelf == false)
             DeathInfo.SetActive(true);
+        aim.SetActive(false);
     }
 
 

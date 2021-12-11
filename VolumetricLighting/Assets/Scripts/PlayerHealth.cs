@@ -44,7 +44,7 @@ public class PlayerHealth : NetworkBehaviour
 
         gameObject.SetActive(false);
         PlayerCameraManager._instance.Disactive();
-        CameraMove.Instance.Active();
+        gameManager._instance.ActiveDeadCam();
     } 
 
     private void OnCollisionEnter(Collision collision)

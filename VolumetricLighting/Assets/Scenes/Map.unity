@@ -17108,6 +17108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFinalStage: 0
+  deadCam: {fileID: 640874039}
 --- !u!4 &973926921
 Transform:
   m_ObjectHideFlags: 0
@@ -17136,6 +17137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InGamePanel: {fileID: 1036941710}
   DeathInfo: {fileID: 737430056}
+  aim: {fileID: 1599251292}
 --- !u!1 &974646369
 GameObject:
   m_ObjectHideFlags: 0

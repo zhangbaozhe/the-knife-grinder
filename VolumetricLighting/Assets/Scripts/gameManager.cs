@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
     //private float TotalTime = 360.0f;
     //private float finalStageTigger = 75.0f;
     public bool isFinalStage = false;
-
+    public GameObject deadCam;
 
     private void Awake()
     {
@@ -32,5 +32,8 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    
+    public void ActiveDeadCam()
+    {
+        deadCam.SetActive(true);
+    }
 }

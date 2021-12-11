@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 373171051559973926}
   - component: {fileID: 373171051559973929}
   - component: {fileID: 373171051559973928}
-  - component: {fileID: 373171051559973927}
   - component: {fileID: 373171051559973924}
   - component: {fileID: 5862900143186739841}
   - component: {fileID: 7033283433240808613}
@@ -127,21 +126,6 @@ MonoBehaviour:
   m_GlobalIntensityMult: 0.5
   m_AmbientLightIntensity: 1
   m_AmbientLightColor: {r: 0.11374155, g: 0.33962262, b: 0.3041611, a: 1}
---- !u!114 &373171051559973927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373171051559973930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a884bc283405da346a3479c62363058b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 373171051559973925}
-  bgm: {fileID: 7033283433240808613}
-  battleTheme: {fileID: 8300000, guid: e94047b0d544d63488493b234f0ed075, type: 3}
 --- !u!114 &373171051559973924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,3 +280,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94270474391c71143866277f996dfa32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgm: {fileID: 7033283433240808613}
+  battleTheme: {fileID: 8300000, guid: e94047b0d544d63488493b234f0ed075, type: 3}
