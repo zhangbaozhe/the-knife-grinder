@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 373171051559973925}
+  bgm: {fileID: 7033283433240808613}
+  battleTheme: {fileID: 8300000, guid: e94047b0d544d63488493b234f0ed075, type: 3}
 --- !u!114 &373171051559973924
 MonoBehaviour:
   m_ObjectHideFlags: 0
