@@ -18,6 +18,7 @@ public class PlayerHealth : NetworkBehaviour
     private Rigidbody rb;
     public GameObject myWeapon;
     public GameObject myFist;
+    public GameObject myFoot;
 
     // death related
     [Command]
@@ -74,6 +75,28 @@ public class PlayerHealth : NetworkBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+        {
+            myFist.GetComponent<SphereCollider>().enabled = true;
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+        {
+            myFoot.GetComponent<SphereCollider>().enabled = true;
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
+        {
+            myWeapon.GetComponent<BoxCollider>().enabled = true;
+        }
+        else
+        {
+            myFist.GetComponent<SphereCollider>().enabled = false;
+            myFist.GetComponent<SphereCollider>().enabled = false;
+            myFist.GetComponent<SphereCollider>().enabled = false;
+        }
+           
+    }
     void FixedUpdate()
     {
         if (!isLocalPlayer) { return; }
@@ -81,7 +104,7 @@ public class PlayerHealth : NetworkBehaviour
         {
             dead();
         }
-
+        
         // wait for all players come in
         // TODO: write some fucntions to detect all palyers comming in
         if (Counter._instance.times <= 225 - 45.0f)
@@ -133,14 +156,11 @@ public class PlayerHealth : NetworkBehaviour
                 return;
             }
 
-        if (other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("punch") ||
-            other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("flying_kick") ||
-            other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("stabbing")
-            )
-        {
+        
+        
             if (other.tag == "fist")
             {
-                myFist.GetComponent<SphereCollider>().enabled = false;
+                //myFist.GetComponent<SphereCollider>().enabled = false;
 
                 if (playerAttack._instance.inAir())
                 {
@@ -181,12 +201,12 @@ public class PlayerHealth : NetworkBehaviour
             }
             else if (other.tag == "knife")
             {
-                myWeapon.GetComponent<BoxCollider>().enabled = false;
+                //myWeapon.GetComponent<BoxCollider>().enabled = false;
                 animator.Play("get_hit");
                 AudioManager._instance.Hit();
                 health = health - 32;
             }
-        }
+        
 
     }
 
@@ -195,12 +215,12 @@ public class PlayerHealth : NetworkBehaviour
         if(other.tag == "fist")
         {
             Debug.Log("Trigger Exit--fist re-active");
-            myFist.GetComponent<SphereCollider>().enabled = true;
+            //myFist.GetComponent<SphereCollider>().enabled = true;
         }
         else if(other.tag == "knife")
         {
             Debug.Log("Trigger Exit--knife re-active");
-            myWeapon.GetComponent<BoxCollider>().enabled = true;
+            //myWeapon.GetComponent<BoxCollider>().enabled = true;
         }
     }
 }

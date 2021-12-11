@@ -2335,6 +2335,7 @@ MonoBehaviour:
   isWin: 0
   myWeapon: {fileID: 3647375813394276842}
   myFist: {fileID: 7177929381885996454}
+  myFoot: {fileID: 0}
 --- !u!114 &5121318057137020795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3301,7 +3302,7 @@ SphereCollider:
   m_GameObject: {fileID: 1087859482359699491}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0.04, y: 0.3, z: 0.03}
@@ -3405,7 +3406,7 @@ SphereCollider:
   m_GameObject: {fileID: 7177929381885996454}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.12
   m_Center: {x: 0, y: 0.2, z: -0.06}
@@ -3673,6 +3674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166709000655008919, guid: 64894925a3775d04db263e8073e04557,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64894925a3775d04db263e8073e04557, type: 3}
