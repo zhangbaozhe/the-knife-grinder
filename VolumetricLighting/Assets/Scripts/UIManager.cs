@@ -39,8 +39,21 @@ public class UIManager : MonoBehaviour
     }
     public void onClientClick()
     {
+        Debug.Log("Start Client"+ ip.text);
+        
         manager.networkAddress = ip.text;
         manager.StartClient();
         
+    }
+
+    public void onButtonQuit2()
+    {
+        panel1.SetActive(true);
+        panel2.SetActive(false);
+    }
+
+    public void onButtonQuit1()
+    {
+        Application.Quit();
     }
 }
