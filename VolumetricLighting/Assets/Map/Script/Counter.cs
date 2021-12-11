@@ -7,9 +7,9 @@ using Mirror;
 public class Counter : NetworkBehaviour
 {
 	private Text TimeText;
-	public float times = 225;
+	public double times = NetworkTime.time + 225;
 	[SyncVar]
-	private int s;//定义一个秒
+	private double s;//定义一个秒
 
 	public GameObject[] firstLevel = new GameObject[5];
 	public GameObject[] secondLevel = new GameObject[16];

@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Area light.unity
     guid: e4b4074801779784da23d0db51071030
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ending.unity
     guid: 1260556f465d2464384a0fa5c96694db
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 441324b0a47753a46935837faf4892cb
   m_configObjects: {}

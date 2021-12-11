@@ -23,7 +23,7 @@ public class Flash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _time = timeManager.GetComponent<Counter>().times;
+        _time = (float) timeManager.GetComponent<Counter>().times;
         if (_time >= endTime && _time <= startTime)
         {
             if (!alarm.isPlaying)
