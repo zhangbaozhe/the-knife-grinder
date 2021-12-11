@@ -81,6 +81,11 @@ public class GrapplingGun : NetworkBehaviour {
             {
                 StopGrapple();
             }
+
+            if(Counter._instance.times <= 215)
+            {
+                StopGrapple();
+            }
         }
     }
 

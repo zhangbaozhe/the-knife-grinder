@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Transform_player : MonoBehaviour
 {
+    public Rigidbody player_rb;
     public Transform player;
     private bool hasTransformed = false;
 
@@ -17,6 +18,7 @@ public class Transform_player : MonoBehaviour
     {
         if (Counter._instance.times <= 215 && !hasTransformed)
         {
+            player_rb.velocity = new Vector3(0f, 0f, 0f);
             player.position = new Vector3(0f, 130f, 330f);
             hasTransformed = true;
         }
