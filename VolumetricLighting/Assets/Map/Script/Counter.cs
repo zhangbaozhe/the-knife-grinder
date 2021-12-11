@@ -7,7 +7,7 @@ using Mirror;
 public class Counter : NetworkBehaviour
 {
 	private Text TimeText;
-	public double times = NetworkTime.time + 225;
+	public double times = 225;
 	[SyncVar]
 	private double s;//定义一个秒
 
@@ -22,9 +22,10 @@ public class Counter : NetworkBehaviour
 	void FixedUpdate()
 	{
 		//计时器完成倒计时的功能
-		times -= Time.deltaTime;
+		times = 225 - NetworkTime.time;
 		s = (int)times % 225; //小数转整数 
 		TimeText.text = s.ToString();
+		Debug.Log(times);
 
 		// Baozhe: first level shaking and falling
 		if (s >= 155 && s < 165)
