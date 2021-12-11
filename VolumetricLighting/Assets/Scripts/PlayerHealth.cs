@@ -33,7 +33,7 @@ public class PlayerHealth : NetworkBehaviour
     public GameObject myFist;
     public GameObject myFoot;
 
-    [Command]
+    /*[Command]
     public void CmdSetFistActive(bool _isSetFist, uint targetID)
     {
         isSetFist = _isSetFist;
@@ -100,7 +100,7 @@ public class PlayerHealth : NetworkBehaviour
                 return;
             }
         }
-    }
+    }*/
 
     // death related
     [Command]
@@ -155,37 +155,37 @@ public class PlayerHealth : NetworkBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         // network ID
-        playerID = this.gameObject.GetComponent<NetworkIdentity>().netId;
+        //playerID = this.gameObject.GetComponent<NetworkIdentity>().netId;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (!isLocalPlayer) { return; }
+        /*if (!isLocalPlayer) { return; }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
         {
             myFist.SetActive(true);
-            CmdSetFistActive(true, playerID);
+            //CmdSetFistActive(true, playerID);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
         {
             myFoot.SetActive(true);
-            CmdSetFootActive(true, playerID);
+            //CmdSetFootActive(true, playerID);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
         {
             myWeapon.SetActive(true);
-            CmdSetWeaponActive(true, playerID);
+            //CmdSetWeaponActive(true, playerID);
         }
         else
         {
             myFist.SetActive(false);
             myWeapon.SetActive(false);
             myFoot.SetActive(false);
-            CmdSetFistActive(false, playerID);
-            CmdSetFootActive(false, playerID);
-            CmdSetWeaponActive(false, playerID);
-        }
+            //CmdSetFistActive(false, playerID);
+            //CmdSetFootActive(false, playerID);
+            //CmdSetWeaponActive(false, playerID);
+        }*/
 
     }
     void FixedUpdate()
@@ -200,7 +200,7 @@ public class PlayerHealth : NetworkBehaviour
         // TODO: write some fucntions to detect all palyers comming in
         if (Counter._instance.times <= 225 - 45.0f)
         {
-            CmdIsWin();
+            //CmdIsWin();
             if (isWin)
             {
                 InGameUI._instance.ShowWinInfo();

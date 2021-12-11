@@ -1225,6 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1087859481333649365}
   - component: {fileID: 1087859481333649366}
+  - component: {fileID: 4809711431512685339}
   m_Layer: 0
   m_Name: Ch44
   m_TagString: Untagged
@@ -1363,6 +1364,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.020623758, y: -0.13897637, z: 0.005446419}
     m_Extent: {x: 0.48382235, y: 1.0226691, z: 0.31325722}
   m_DirtyAABB: 0
+--- !u!136 &4809711431512685339
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087859481333649364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.31650114
+  m_Height: 1.8886797
+  m_Direction: 1
+  m_Center: {x: 0.002982378, y: 0.9460653, z: 0.005840361}
 --- !u!1 &1087859481343536131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,12 +2201,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087859482140734270}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.19262362
-  m_Height: 1.9
+  m_Radius: 0.21516256
+  m_Height: 0.7783661
   m_Direction: 1
-  m_Center: {x: -0.034546196, y: 0.95, z: 0}
+  m_Center: {x: -0.0063724965, y: 1.510817, z: 0}
 --- !u!114 &1087859482140734215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2331,8 +2346,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   health: 100
+  playerID: 0
   isdead: 0
   isWin: 0
+  isSetFist: 1
+  isSetFoot: 1
+  isSetWeapon: 1
   myWeapon: {fileID: 3647375813394276842}
   myFist: {fileID: 7177929381885996454}
   myFoot: {fileID: 8165861524494185938}
@@ -3134,9 +3153,7 @@ MonoBehaviour:
   syncInterval: 0.1
   source: {fileID: 2100000, guid: ab45409b5a3563a45ab367ed34faff7a, type: 2}
   childBody: {fileID: 1087859481333649364}
-  rimColor:
-    serializedVersion: 2
-    rgba: 4288047408
+  rimColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1087859482239540528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3713,15 +3730,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64894925a3775d04db263e8073e04557, type: 3}
---- !u!4 &3647375813393792458 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 16610492936528148, guid: 64894925a3775d04db263e8073e04557,
-    type: 3}
-  m_PrefabInstance: {fileID: 3649349313235426526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3647375813394276842 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 16610492936174900, guid: 64894925a3775d04db263e8073e04557,
+    type: 3}
+  m_PrefabInstance: {fileID: 3649349313235426526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3647375813393792458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 16610492936528148, guid: 64894925a3775d04db263e8073e04557,
     type: 3}
   m_PrefabInstance: {fileID: 3649349313235426526}
   m_PrefabAsset: {fileID: 0}
