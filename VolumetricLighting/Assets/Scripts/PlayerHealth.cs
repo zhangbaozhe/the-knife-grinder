@@ -79,21 +79,21 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
         {
-            myFist.GetComponent<SphereCollider>().enabled = true;
+            myFist.SetActive(true);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
         {
-            myFoot.GetComponent<SphereCollider>().enabled = true;
+            myFoot.SetActive(true);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
         {
-            myWeapon.GetComponent<BoxCollider>().enabled = true;
+            myWeapon.SetActive(true);
         }
         else
         {
-            myFist.GetComponent<SphereCollider>().enabled = false;
-            myFist.GetComponent<SphereCollider>().enabled = false;
-            myFist.GetComponent<SphereCollider>().enabled = false;
+            myFist.SetActive(false);
+            myFist.SetActive(false);
+            myFist.SetActive(false);
         }
            
     }
