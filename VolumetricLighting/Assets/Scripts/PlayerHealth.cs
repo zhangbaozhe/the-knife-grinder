@@ -135,6 +135,7 @@ public class PlayerHealth : NetworkBehaviour
             {
                 return;
             }
+        
         if (other.tag == "fist")
         {
             myFist.GetComponent<SphereCollider>().enabled = false;
