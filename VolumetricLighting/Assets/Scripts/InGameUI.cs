@@ -8,6 +8,7 @@ public class InGameUI : MonoBehaviour
     public static InGameUI _instance;
     public GameObject InGamePanel;
     public GameObject DeathInfo;
+    public GameObject WinInfo;
     public GameObject aim;
 
     private void Awake()
@@ -49,6 +50,11 @@ public class InGameUI : MonoBehaviour
             DeathInfo.SetActive(true);
         aim.SetActive(false);
     }
-
+    public void ShowWinInfo()
+    {
+        if (WinInfo.activeSelf == false)
+            WinInfo.SetActive(true);
+        
+    }
 
 }

@@ -84,11 +84,12 @@ public class PlayerHealth : NetworkBehaviour
 
         // wait for all players come in
         // TODO: write some fucntions to detect all palyers comming in
-        if (Counter._instance.times <= 225 - 40.0f)
+        if (Counter._instance.times <= 225 - 45.0f)
         {
             CmdIsWin();
             if (isWin)
             {
+                InGameUI._instance.ShowWinInfo();
                 Debug.Log("WINWINWIN");
             }
         }
