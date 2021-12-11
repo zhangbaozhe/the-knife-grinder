@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Button Client;
     public InputField ip;
     private NetworkManager manager;
+
     // Start is called before the first frame update
     private void Awake()
     {

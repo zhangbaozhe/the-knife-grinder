@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
         animator.Play("dead");
         isdead = true;
         AudioManager._instance.Die();
+        InGameUI._instance.ShowDeathInfo();
     } 
 
     private void OnCollisionEnter(Collision collision)
