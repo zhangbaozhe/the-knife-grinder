@@ -11,6 +11,7 @@ public class Transform_player : MonoBehaviour
     void Start()
     {
         
+
     }
 
     // Update is called once per frame
