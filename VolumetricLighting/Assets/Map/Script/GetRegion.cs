@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GetRegion : MonoBehaviour
 {
+    public static GetRegion _instance;
     public float region_num;
     public Transform tf;
 
@@ -11,6 +12,10 @@ public class GetRegion : MonoBehaviour
     private float z;
     private bool is_color;
 
+    private void Awake()
+    {
+        _instance = this;
+    }
     void Start()
     {
             
