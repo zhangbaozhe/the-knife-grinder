@@ -19,6 +19,7 @@ public class PlayerHealth : NetworkBehaviour
     }
     void Start()
     {
+        if (!isLocalPlayer) { return; }
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
@@ -34,6 +35,7 @@ public class PlayerHealth : NetworkBehaviour
     }
     private void dead()
     {
+        if (!isLocalPlayer) { return;  }
         animator.Play("dead");
         isdead = true;
         AudioManager._instance.Die();
