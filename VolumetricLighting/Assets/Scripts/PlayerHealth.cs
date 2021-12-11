@@ -118,10 +118,7 @@ public class PlayerHealth : NetworkBehaviour
             }
         
 
-        if(health <= 0)
-        {
-            dead();
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,59 +132,62 @@ public class PlayerHealth : NetworkBehaviour
             {
                 return;
             }
-        
-        if (other.tag == "fist")
-        {
-            myFist.GetComponent<SphereCollider>().enabled = false;
 
-            if (playerAttack._instance.inAir())
+        if (other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("punch") ||
+            other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("flying_kick") ||
+            other.transform.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("stabbing")
+            )
+        {
+            if (other.tag == "fist")
             {
-                Debug.Log("inair --hit");
-                rb.AddExplosionForce(1500.0f, other.transform.position, 1.0f);
+                myFist.GetComponent<SphereCollider>().enabled = false;
+
+                if (playerAttack._instance.inAir())
+                {
+                    Debug.Log("inair --hit");
+                    rb.AddExplosionForce(1500.0f, other.transform.position, 1.0f);
+                }
+                else
+                {
+                    Debug.Log("grounded --hit");
+                    rb.AddExplosionForce(5000.0f, other.transform.position, 1.0f);
+                }
+                //Vector3 delta = (transform.position - collision.collider.transform.position).normalized;
+                //Vector3 force = new Vector3(delta.x * 1000, delta.y * 500, delta.z * 1000);
+                /*rb.position.Set(Mathf.Lerp(transform.position.x, transform.position.x + delta.x * 100, 0.5f),
+                    Mathf.Lerp(transform.position.y, transform.position.y + delta.y * 1000, 0.5f),
+                    Mathf.Lerp(transform.position.z, transform.position.z + delta.z * 1000, 0.5f)); */
+                //Vector3 newPosition = transform.position + delta;
+                //Debug.Log(transform.position.ToString()+ "--before");
+                //if (playerAttack._instance.inAir())
+                //   rb.AddForce(Vector3.up * 1000);
+                //rb.AddForce(force);
+
+                //Debug.Log(transform.position.ToString() + "--after");
+                animator.Play("get_hit");
+                AudioManager._instance.Hit();
+                health = health - 8;
             }
-            else
+            else if (other.tag == "foot")
             {
-                Debug.Log("grounded --hit");
-                rb.AddExplosionForce(5000.0f, other.transform.position, 1.0f);
+                if (playerAttack._instance.inAir())
+                    rb.AddExplosionForce(700.0f, other.transform.position, 1.0f);
+                else
+                    rb.AddExplosionForce(2000.0f, other.transform.position, 1.0f);
+
+                animator.Play("get_hit");
+                AudioManager._instance.Hit();
+                health = health - 13;
             }
-            //Vector3 delta = (transform.position - collision.collider.transform.position).normalized;
-            //Vector3 force = new Vector3(delta.x * 1000, delta.y * 500, delta.z * 1000);
-            /*rb.position.Set(Mathf.Lerp(transform.position.x, transform.position.x + delta.x * 100, 0.5f),
-                Mathf.Lerp(transform.position.y, transform.position.y + delta.y * 1000, 0.5f),
-                Mathf.Lerp(transform.position.z, transform.position.z + delta.z * 1000, 0.5f)); */
-            //Vector3 newPosition = transform.position + delta;
-            //Debug.Log(transform.position.ToString()+ "--before");
-            //if (playerAttack._instance.inAir())
-            //   rb.AddForce(Vector3.up * 1000);
-            //rb.AddForce(force);
+            else if (other.tag == "knife")
+            {
+                myWeapon.GetComponent<BoxCollider>().enabled = false;
+                animator.Play("get_hit");
+                AudioManager._instance.Hit();
+                health = health - 32;
+            }
+        }
 
-            //Debug.Log(transform.position.ToString() + "--after");
-            animator.Play("get_hit");
-            AudioManager._instance.Hit();
-            health = health - 8;
-        }
-        else if (other.tag == "foot")
-        {
-            if (playerAttack._instance.inAir())
-                rb.AddExplosionForce(700.0f, other.transform.position, 1.0f);
-            else
-                rb.AddExplosionForce(2000.0f, other.transform.position, 1.0f);
-
-            animator.Play("get_hit");
-            AudioManager._instance.Hit();
-            health = health - 13;
-        }
-        else if (other.tag == "knife")
-        {
-            myWeapon.GetComponent<BoxCollider>().enabled = false;
-            animator.Play("get_hit");
-            AudioManager._instance.Hit();
-            health = health - 32;
-        }
-        if (health <= 0)
-        {
-            dead();
-        }
     }
 
     private void OnTriggerExit(Collider other)
