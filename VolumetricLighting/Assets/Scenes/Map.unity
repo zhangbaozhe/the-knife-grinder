@@ -17012,7 +17012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d50b495c36e25d4495adc22d6f11380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFinalStage: 0
+  isFinalStage: 1
   text: {fileID: 1534090931}
 --- !u!4 &973926921
 Transform:
@@ -21514,7 +21514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1224193307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36120,8 +36120,8 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/Area light.unity
+  onlineScene: Assets/Scenes/Map.unity
   transport: {fileID: 1940738695}
   networkAddress: localhost
   maxConnections: 100

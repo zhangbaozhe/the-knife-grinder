@@ -39,7 +39,8 @@ public class UIManager : MonoBehaviour
     }
     public void onClientClick()
     {
-        manager.StartClient();
         manager.networkAddress = ip.text;
+        manager.StartClient();
+        
     }
 }
