@@ -7,11 +7,10 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager _instance;
 
-    private float TotalTime = 360.0f;
-    private float finalStageTigger = 75.0f;
+    //private float TotalTime = 360.0f;
+    //private float finalStageTigger = 75.0f;
     public bool isFinalStage = false;
-    public GameObject text;
-    private Text timeInfo;
+
 
     private void Awake()
     {
@@ -20,20 +19,16 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeInfo = text.GetComponent<Text>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(TotalTime > 0)
-        {
-            TotalTime -= Time.deltaTime;
-        }
-        timeInfo.text = ((int)TotalTime).ToString();
-        if(!isFinalStage && TotalTime <= finalStageTigger)
+        if(Counter._instance.times <= 61.0f)
         {
             isFinalStage = true;
+            playerAttack._instance.drawKnife();
         }
     }
 

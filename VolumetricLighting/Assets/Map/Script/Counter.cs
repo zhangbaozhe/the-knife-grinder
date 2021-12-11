@@ -6,6 +6,7 @@ using Mirror;
 
 public class Counter : NetworkBehaviour
 {
+	public static Counter _instance;
 	private Text TimeText;
 	public double times = 225;
 	[SyncVar]
@@ -14,7 +15,11 @@ public class Counter : NetworkBehaviour
 	public GameObject[] firstLevel = new GameObject[5];
 	public GameObject[] secondLevel = new GameObject[16];
 
-	void Start()
+    private void Awake()
+    {
+		_instance = this;
+    }
+    void Start()
 	{
 		TimeText = GameObject.Find("TimeText").GetComponent<Text>();
 	}

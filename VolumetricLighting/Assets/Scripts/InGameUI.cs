@@ -14,7 +14,7 @@ public class InGameUI : MonoBehaviour
         _instance = this;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
