@@ -10,15 +10,97 @@ public class PlayerHealth : NetworkBehaviour
     public int health = 100;
 
     [SyncVar]
+    public uint playerID; 
+
+    [SyncVar]
     public bool isdead = false;
 
     [SyncVar]
     public bool isWin = false;
 
+    // sync attacking stuff
+    [SyncVar]
+    public bool isSetFist = true;
+
+    [SyncVar]
+    public bool isSetFoot = true;
+
+    [SyncVar]
+    public bool isSetWeapon = true;
+
     private Rigidbody rb;
     public GameObject myWeapon;
     public GameObject myFist;
     public GameObject myFoot;
+
+    [Command]
+    public void CmdSetFistActive(bool _isSetFist, uint targetID)
+    {
+        isSetFist = _isSetFist;
+        RpcSetFistActive(_isSetFist, targetID);
+    }
+
+    [Command]
+    public void CmdSetFootActive(bool _isSetFoot, uint targetID)
+    {
+        isSetFoot = _isSetFoot;
+        RpcSetFootActive(_isSetFoot, targetID);
+    }
+
+    [Command]
+    public void CmdSetWeaponActive(bool _isSetWeapon, uint targetID)
+    {
+        isSetWeapon = _isSetWeapon;
+        RpcSetWeaponActive(_isSetWeapon, targetID);
+    }
+    
+    [ClientRpc]
+    public void RpcSetFistActive(bool _isSetFist, uint targetID)
+    {
+        GameObject[] tempGameObjects = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < tempGameObjects.Length; i++)
+        {
+            // Debug.Log(tempGameObjects[i].name);
+            if (tempGameObjects[i].GetComponent<NetworkIdentity>().netId == targetID)
+            {
+                if (tempGameObjects[i].transform.Find("fist") == null) { return; }
+                tempGameObjects[i].transform.Find("fist").gameObject.SetActive(_isSetFist);
+                return;
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void RpcSetFootActive(bool _isSetFoot, uint targetID)
+    {
+        GameObject[] tempGameObjects = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < tempGameObjects.Length; i++)
+        {
+            // Debug.Log(tempGameObjects[i].name);
+            if (tempGameObjects[i].GetComponent<NetworkIdentity>().netId == targetID)
+            {
+                if (tempGameObjects[i].transform.Find("foot") == null) { return; }
+                tempGameObjects[i].transform.Find("foot").gameObject.SetActive(_isSetFoot);
+                return;
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void RpcSetWeaponActive(bool _isSetWeapon, uint targetID)
+    {
+        GameObject[] tempGameObjects = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < tempGameObjects.Length; i++)
+        {
+            // Debug.Log(tempGameObjects[i].name);
+            if (tempGameObjects[i].GetComponent<NetworkIdentity>().netId == targetID)
+            {
+                if (tempGameObjects[i].transform.Find("Tanton") == null) { return; }
+                tempGameObjects[i].transform.Find("Tanton").gameObject.SetActive(_isSetWeapon);
+                return;
+            }
+        }
+    }
 
     // death related
     [Command]
@@ -72,28 +154,37 @@ public class PlayerHealth : NetworkBehaviour
         if (!isLocalPlayer) { return; }
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        // network ID
+        playerID = this.gameObject.GetComponent<NetworkIdentity>().netId;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (!isLocalPlayer) { return; }
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
         {
             myFist.SetActive(true);
+            CmdSetFistActive(true, playerID);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
         {
             myFoot.SetActive(true);
+            CmdSetFootActive(true, playerID);
         }
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
         {
             myWeapon.SetActive(true);
+            CmdSetWeaponActive(true, playerID);
         }
         else
         {
             myFist.SetActive(false);
-            myFist.SetActive(false);
-            myFist.SetActive(false);
+            myWeapon.SetActive(false);
+            myFoot.SetActive(false);
+            CmdSetFistActive(false, playerID);
+            CmdSetFootActive(false, playerID);
+            CmdSetWeaponActive(false, playerID);
         }
            
     }
@@ -148,13 +239,13 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (other.tag != "Ground")
             //Debug.Log(other.tag);
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch") ||
+            /*if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("get_hit"))
             {
                 return;
-            }
+            }*/
 
         
         
