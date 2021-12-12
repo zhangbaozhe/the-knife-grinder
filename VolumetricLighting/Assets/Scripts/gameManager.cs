@@ -29,11 +29,11 @@ public class gameManager : MonoBehaviour
         {
             if(!isFinalStage)
                 isFinalStage = true;
-            if (!knifeDrawed)
+            /*if (!knifeDrawed)
             {
                 playerAttack._instance.drawKnife();
                 knifeDrawed = true;
-            }
+            }*/
         }
     }
 

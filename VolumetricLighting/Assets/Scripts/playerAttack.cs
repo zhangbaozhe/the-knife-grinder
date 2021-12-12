@@ -13,6 +13,7 @@ public class playerAttack : NetworkBehaviour
     private float coolingTimer = 0.6f;
     private float currentTime = 0.0f;
 
+    private bool isknifeDrawed = false;
     public Transform detector;
     public LayerMask lm;
 
@@ -58,6 +59,11 @@ public class playerAttack : NetworkBehaviour
         }
         else
             AudioManager._instance.inair.Stop();
+        if(Counter._instance.times <= 55 && !isknifeDrawed)
+        {
+            drawKnife();
+            isknifeDrawed = true;
+        }
     }
     void Delay()
     {
