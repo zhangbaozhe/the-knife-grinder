@@ -1226,6 +1226,7 @@ GameObject:
   - component: {fileID: 1087859481333649365}
   - component: {fileID: 1087859481333649366}
   - component: {fileID: 9205136785917085337}
+  - component: {fileID: 1903788731121222025}
   m_Layer: 0
   m_Name: Ch44
   m_TagString: Untagged
@@ -1378,6 +1379,20 @@ CapsuleCollider:
   m_Height: 0.7207731
   m_Direction: 1
   m_Center: {x: 0.0030615032, y: 0.3967299, z: 0.005840361}
+--- !u!136 &1903788731121222025
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087859481333649364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.120215446
+  m_Height: 0.34133434
+  m_Direction: 1
+  m_Center: {x: -0.004717186, y: 1.1159198, z: 0.036034495}
 --- !u!1 &1087859481343536131
 GameObject:
   m_ObjectHideFlags: 0
