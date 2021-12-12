@@ -11,7 +11,7 @@ public class gameManager : MonoBehaviour
     //private float finalStageTigger = 75.0f;
     public bool isFinalStage = false;
     public GameObject deadCam;
-
+    private bool knifeDrawed = false;
     private void Awake()
     {
         _instance = this;
@@ -27,8 +27,13 @@ public class gameManager : MonoBehaviour
     {
         if(Counter._instance.times <= 61.0f)
         {
-            isFinalStage = true;
-            playerAttack._instance.drawKnife();
+            if(!isFinalStage)
+                isFinalStage = true;
+            if (!knifeDrawed)
+            {
+                playerAttack._instance.drawKnife();
+                knifeDrawed = true;
+            }
         }
     }
 

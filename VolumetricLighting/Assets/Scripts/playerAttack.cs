@@ -23,7 +23,7 @@ public class playerAttack : NetworkBehaviour
     public Transform rightFoot;
 
     public GameObject knife;
-
+    public GameObject fist;
 
     // Start is called before the first frame update
     private void Awake()
@@ -125,5 +125,6 @@ public class playerAttack : NetworkBehaviour
     public void drawKnife()
     {
         knife.SetActive(true);
+        fist.SetActive(false);
     }
 }

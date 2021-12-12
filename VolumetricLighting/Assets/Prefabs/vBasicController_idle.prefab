@@ -2346,6 +2346,7 @@ MonoBehaviour:
   leftFoot: {fileID: 1087859482359699492}
   rightFoot: {fileID: 1087859482012020416}
   knife: {fileID: 3647375813394276842}
+  fist: {fileID: 7177929381885996454}
 --- !u!114 &4198114312812820444
 MonoBehaviour:
   m_ObjectHideFlags: 0
