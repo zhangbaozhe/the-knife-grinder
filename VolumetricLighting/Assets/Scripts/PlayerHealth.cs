@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : NetworkBehaviour
 {
     public static PlayerHealth _instance;
     private Animator animator;
+    private float win_time;
+    private bool is_stop = false;
     public int health = 100;
 
     [SyncVar]
@@ -20,6 +22,8 @@ public class PlayerHealth : NetworkBehaviour
     public GameObject myFist;
     public GameObject myFoot;
 
+    private double deathTime = 0;
+    private static double realdeathTime = 0;
     // death related
     [Command]
     public void CmdSetupDeath(bool _dead)
@@ -77,46 +81,73 @@ public class PlayerHealth : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+        Debug.Log(deathTime);
+        if (isdead && (Time.time - deathTime) >= 4f)
         {
-            myFist.SetActive(true);
+            
+            
+            if (gameObject.activeSelf)
+            {
+                
+                gameObject.SetActive(false);
+                PlayerCameraManager._instance.Disactive();
+                gameManager._instance.ActiveDeadCam();
+            }
+            //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
+            //    {
+            //        myFist.SetActive(true);
+            //    }
+            //    else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
+            //    {
+            //        myFoot.SetActive(true);
+            //    }
+            //    else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
+            //    {
+            //        myWeapon.SetActive(true);
+            //    }
+            //    else
+            //    {
+            //        myFist.SetActive(false);
+            //        myFist.SetActive(false);
+            //        myFist.SetActive(false);
+            //    }
         }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick"))
-        {
-            myFoot.SetActive(true);
-        }
-        else if (animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing"))
-        {
-            myWeapon.SetActive(true);
-        }
-        else
-        {
-            myFist.SetActive(false);
-            myFist.SetActive(false);
-            myFist.SetActive(false);
-        }
-           
     }
     void FixedUpdate()
-    {
-        if (!isLocalPlayer) { return; }
-        if (health <= 0)
         {
-            dead();
-        }
-        
-        // wait for all players come in
-        // TODO: write some fucntions to detect all palyers comming in
-        if (Counter._instance.times <= 225 - 45.0f)
-        {
-            CmdIsWin();
-            if (isWin)
+            if (!isLocalPlayer) { return; }
+            if (health <= 0)
             {
-                InGameUI._instance.ShowWinInfo();
-                Debug.Log("WINWINWIN");
+                if(!isdead)
+                    dead();
+            }
+
+            // wait for all players come in
+            // TODO: write some fucntions to detect all palyers comming in
+            if (Counter._instance.times <= 225 - 45.0f)
+            {
+                CmdIsWin();
+                if (isWin && !is_stop)
+                {
+                win_time = Time.time + 5f;
+                is_stop = true;
+                }
+                if(isWin)
+                {
+                    InGameUI._instance.ShowWinInfo();
+                    Debug.Log("WINWINWIN");
+                // I quit. Mirror is so hard ...
+
+                if(Time.time >= win_time)
+                {
+                    SceneManager.LoadScene("Area Light");
+                    //Application.Quit();
+                }
+                
+                }
             }
         }
-    }
+    
     private void dead()
     {
         if (!isLocalPlayer) { return;  }
@@ -125,10 +156,8 @@ public class PlayerHealth : NetworkBehaviour
         CmdSetupDeath(true);
         AudioManager._instance.Die();
         InGameUI._instance.ShowDeathInfo();
-
-        gameObject.SetActive(false);
-        PlayerCameraManager._instance.Disactive();
-        gameManager._instance.ActiveDeadCam();
+        deathTime = Time.time;
+        realdeathTime = deathTime;
     } 
 
     private void OnCollisionEnter(Collision collision)
@@ -148,17 +177,17 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (other.tag != "Ground")
             //Debug.Log(other.tag);
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch") ||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") ||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing") ||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("get_hit"))
-            {
-                return;
-            }
+        if (
+        //    animator.GetCurrentAnimatorStateInfo(0).IsName("flying_kick") ||
+        //    animator.GetCurrentAnimatorStateInfo(0).IsName("stabbing") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("get_hit"))
+        {
+            return;
+        }
 
-        
-        
-            if (other.tag == "fist")
+
+
+        if (other.tag == "fist")
             {
                 //myFist.GetComponent<SphereCollider>().enabled = false;
 
@@ -191,9 +220,9 @@ public class PlayerHealth : NetworkBehaviour
             else if (other.tag == "foot")
             {
                 if (playerAttack._instance.inAir())
-                    rb.AddExplosionForce(700.0f, other.transform.position, 1.0f);
+                    rb.AddExplosionForce(3000.0f, other.transform.position, 1.0f);
                 else
-                    rb.AddExplosionForce(2000.0f, other.transform.position, 1.0f);
+                    rb.AddExplosionForce(8000.0f, other.transform.position, 1.0f);
 
                 animator.Play("get_hit");
                 AudioManager._instance.Hit();
