@@ -2367,6 +2367,8 @@ MonoBehaviour:
   myWeapon: {fileID: 3647375813394276842}
   myFist: {fileID: 7177929381885996454}
   myFoot: {fileID: 8165861524494185938}
+  camPrefab: {fileID: 2009955734111618664, guid: 75d5b10d9133c674bb48fe58708de43f,
+    type: 3}
 --- !u!114 &5121318057137020795
 MonoBehaviour:
   m_ObjectHideFlags: 0

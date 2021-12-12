@@ -22,6 +22,7 @@ public class PlayerHealth : NetworkBehaviour
     public GameObject myFist;
     public GameObject myFoot;
 
+    public GameObject camPrefab;
     private double deathTime = 0;
     private static double realdeathTime = 0;
     // death related
@@ -91,7 +92,8 @@ public class PlayerHealth : NetworkBehaviour
                 
                 gameObject.SetActive(false);
                 PlayerCameraManager._instance.Disactive();
-                gameManager._instance.ActiveDeadCam();
+                //gameManager._instance.ActiveDeadCam();
+                Instantiate<GameObject>(camPrefab);
             }
             //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("punch"))
             //    {
